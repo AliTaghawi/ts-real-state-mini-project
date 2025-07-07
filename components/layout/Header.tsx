@@ -8,13 +8,13 @@ import MainMenu from "@/modules/layout/MainMenu";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center bg-neutral-50 py-2 px-4 my-4 border-2 border-neutral-700 rounded-md">
+    <div className="flex justify-between items-center bg-neutral-100 py-2 px-4 my-4 border-2 border-neutral-700 rounded-md">
       <HamburgerMenu />
       <MainMenu>
-        <ul className="flex flex-col md:flex-row md:items-center md:gap-0.5 gap-2">
+        <ul className="flex flex-col md:flex-row md:items-center md:gap-1 gap-2">
           <MenuItem href="/" title="خانه" />
           <MenuItem href="/property-files" title="آگهی‌ها" />
-          <MenuItem href="/" title="درباره سایت" />
+          <MenuItem href="/about-site" title="درباره سایت" />
         </ul>
         <SearchBox />
       </MainMenu>

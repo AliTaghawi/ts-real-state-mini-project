@@ -3,6 +3,7 @@ import Vazirmatn from "@/public/fonts/fonts";
 import "./globals.css";
 import { ChildrenType } from "@/types/types";
 import Layout from "@/layout/Layout";
+import ReduxProvider from "@/providers/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "Real state",
@@ -14,7 +15,9 @@ export default function RootLayout({ children }: ChildrenType) {
   return (
     <html lang="fa" dir="rtl">
       <body className={Vazirmatn.className}>
-        <Layout>{children}</Layout>
+        <ReduxProvider>
+          <Layout>{children}</Layout>
+        </ReduxProvider>
       </body>
     </html>
   );

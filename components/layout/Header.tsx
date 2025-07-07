@@ -4,19 +4,20 @@ import LoginProfile from "@/elements/layout/LoginProfile";
 import MenuItem from "@/elements/layout/MenuItem";
 import SearchBox from "@/elements/layout/SearchBox";
 import HamburgerMenu from "@/elements/layout/HamburgerMenu";
+import MainMenu from "@/modules/layout/MainMenu";
 
 const Header = () => {
   return (
     <div className="flex justify-between items-center bg-neutral-50 py-2 px-4 my-4 border-2 border-neutral-700 rounded-md">
       <HamburgerMenu />
-      <div className="hidden md:flex items-center gap-2 ">
-        <ul className="flex items-center gap-0.5">
+      <MainMenu>
+        <ul className="flex flex-col md:flex-row md:items-center md:gap-0.5 gap-2">
           <MenuItem href="/" title="خانه" />
           <MenuItem href="/property-files" title="آگهی‌ها" />
           <MenuItem href="/" title="درباره سایت" />
         </ul>
         <SearchBox />
-      </div>
+      </MainMenu>
       <Link
         href="/"
         className="flex justify-end items-center gap-1 cursor-default md:mr-8 lg:mr-0 lg:w-[250px]"

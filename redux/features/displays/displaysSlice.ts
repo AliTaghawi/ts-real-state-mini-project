@@ -8,11 +8,14 @@ const displaySlice = createSlice({
   name: "displays",
   initialState,
   reducers: {
-    handleMainMenu: (state) => {
+    toggleMainMenu: (state) => {
       state.mainMenu = !state.mainMenu;
     },
+    closeMainMenu: (state) => {
+      state.mainMenu = false
+    }
   },
 });
 
 export default displaySlice.reducer;
-export const { handleMainMenu } = displaySlice.actions;
+export const { toggleMainMenu, closeMainMenu } = displaySlice.actions;

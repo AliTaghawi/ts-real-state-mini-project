@@ -26,6 +26,7 @@
       "@/utils/*": ["utils/*"],
       "@/providers/*": ["providers/*"],
       "@/models/*": ["models/*"],
+      "@/hooks/*": ["hooks/*"],
       "@/redux/*": ["redux/*"],
       "@/features/*": ["redux/features/*"],
       "@/elements/*": ["components/elements/*"],

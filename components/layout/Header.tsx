@@ -3,10 +3,12 @@ import Image from "next/image";
 import LoginProfile from "@/elements/layout/LoginProfile";
 import MenuItem from "@/elements/layout/MenuItem";
 import SearchBox from "@/elements/layout/SearchBox";
+import HamburgerMenu from "@/elements/layout/HamburgerMenu";
 
 const Header = () => {
   return (
     <div className="flex justify-between items-center bg-neutral-50 py-2 px-4 my-4 border-2 border-neutral-700 rounded-md">
+      <HamburgerMenu />
       <div className="hidden md:flex items-center gap-2 ">
         <ul className="flex items-center gap-0.5">
           <MenuItem href="/" title="خانه" />

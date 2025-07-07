@@ -2,6 +2,7 @@ import RSUser from "@/models/RSUser";
 import { StatusCodes, StatusMessages } from "@/types/enums";
 import { hashPassword } from "@/utils/auth";
 import connectDB from "@/utils/connectDB";
+import { registerSchema } from "@/utils/validation";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -10,7 +11,23 @@ export async function POST(req: NextRequest) {
 
     const { email, password, confirmPassword } = await req.json();
 
-    // validation
+    try {
+      await registerSchema.validateAsync({ email, password, confirmPassword });
+    } catch (error: any) {
+      console.log(error.details[0]);
+      return NextResponse.json(
+        { error: error.details[0].message },
+        { status: StatusCodes.UNPROCESSABLE_ENTITY }
+      );
+    }
+
+    const existedUser = await RSUser.findOne({ email });
+    if (existedUser) {
+      return NextResponse.json(
+        { error: StatusMessages.EXISTED_USER },
+        { status: StatusCodes.BAD_REQUEST }
+      );
+    }
 
     const hashedPassword = await hashPassword(password);
 

@@ -1,6 +1,7 @@
 enum StatusMessages {
   USER_CREATED = "کاربر با موفقیت ایجاد شد",
   PROFILE_CREATED = "آگهی با موفقیت ثبت شد",
+  EXISTED_USER = "این حساب کاربری قبلا ایجاد شده!",
   UNAUTHORIZED = "لطفا وارد حساب کاربری خود شوید!",
   FORBIDDEN = "دسترسی شما محدود شده است!",
   NOTFOUND_USER = "کاربر یافت نشد، لطفا اول ثبت نام کنید!",

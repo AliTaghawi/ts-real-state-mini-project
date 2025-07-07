@@ -4,6 +4,7 @@ import "./globals.css";
 import { ChildrenType } from "@/types/types";
 import Layout from "@/layout/Layout";
 import ReduxProvider from "@/providers/ReduxProvider";
+import NextAuthProvider from "@/providers/NextAuthProvider";
 
 export const metadata: Metadata = {
   title: "Real state",
@@ -15,9 +16,11 @@ export default function RootLayout({ children }: ChildrenType) {
   return (
     <html lang="fa" dir="rtl">
       <body className={Vazirmatn.className}>
-        <ReduxProvider>
-          <Layout>{children}</Layout>
-        </ReduxProvider>
+        <NextAuthProvider>
+          <ReduxProvider>
+            <Layout>{children}</Layout>
+          </ReduxProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

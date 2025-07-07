@@ -6,6 +6,7 @@ enum StatusMessages {
   FORBIDDEN = "دسترسی شما محدود شده است!",
   NOTFOUND_USER = "کاربر یافت نشد، لطفا اول ثبت نام کنید!",
   NOTFOUND_PROFILE = "آگهی مورد نظر یافت نشد!",
+  WRONG_PASSWORD = "ایمیل یا رمز عبور اشتباه است!",
   SERVER_ERROR = "مشکلی در سرور پیش آمده لطفا دوباره امتحان کنید!",
 }
 

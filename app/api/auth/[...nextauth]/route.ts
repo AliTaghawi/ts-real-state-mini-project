@@ -7,7 +7,7 @@ import { verifyPassword } from "@/utils/auth";
 import RSUser from "@/models/RSUser";
 import { StatusMessages } from "@/types/enums";
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   providers: [
     CredentialsProvider({

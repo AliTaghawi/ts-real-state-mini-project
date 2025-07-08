@@ -2,7 +2,7 @@ import { IoMdSearch } from "react-icons/io";
 
 const SearchBox = () => {
   return (
-    <div className="flex items-center gap-1 bg-neutral-100 border border-neutral-300 py-0.5 px-2.5 rounded-2xl">
+    <div className="flex items-center gap-1 bg-neutral-50 py-0.5 px-2.5 rounded-2xl">
       <IoMdSearch className="text-xl" />
       <input type="text" placeholder="جستجو در عنوان" className=" outline-0 w-[200px]" />
     </div>

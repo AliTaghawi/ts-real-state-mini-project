@@ -6,7 +6,7 @@ const LoginProfile = () => {
     <div>
       <Link
         href="/login"
-        className="flex items-center gap-0.5 px-2 py-0.5 outline-0 outline-neutral-200 hover:bg-neutral-300/30 hover:outline-1 rounded-sm transition-all ease-linear"
+        className="flex items-center gap-0.5 px-2 py-0.5 hover:bg-sky-200 rounded-sm transition-all ease-linear"
       >
         <TbLogin2 className="text-xl" />
         Login

@@ -1,12 +1,12 @@
-import RegisterPage from "@/templates/RegisterPage";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import RegisterPage from "@/templates/RegisterPage";
+import { authOptions } from "@/api/auth/[...nextauth]/route";
 
-async function page() {
+async function Register() {
   const session = await getServerSession(authOptions)
   if (session) redirect("/")
   return <RegisterPage />;
 }
 
-export default page;
+export default Register;

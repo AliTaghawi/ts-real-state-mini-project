@@ -6,6 +6,7 @@ const TextInput = ({
   name,
   value,
   error,
+  blur,
   placeholder,
   changeHandler,
   blurHandler,
@@ -15,7 +16,7 @@ const TextInput = ({
       <label>{title}</label>
       <input
         className={`py-1 px-2 border ${
-          error
+          blur && error
             ? "border-red-400 outline-red-400"
             : "border-sky-400 outline-sky-400"
         } rounded-md text-left`}
@@ -26,7 +27,7 @@ const TextInput = ({
         onChange={changeHandler}
         onBlur={blurHandler}
       />
-      {error && (
+      {blur && error && (
         <span className="absolute -bottom-6 text-xs bg-red-200 w-full rounded-sm py-0.5 px-2.5 text-red-800">
           {error}
         </span>

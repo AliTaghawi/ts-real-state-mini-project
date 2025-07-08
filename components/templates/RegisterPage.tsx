@@ -1,7 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
 import LoginRegisterForm from "@/modules/LoginRegisterForm";
 import { RegisterType } from "@/types/types";
 
@@ -21,18 +23,41 @@ const validationSchema = Yup.object({
     .required("الزامی!"),
 });
 
-const onSubmit = (values: object, { resetForm }: { resetForm: () => void }) => {
-  console.log(values);
-  resetForm();
-};
-
 const RegisterPage = () => {
+  const router = useRouter();
   const formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema,
   });
-  return <LoginRegisterForm formik={formik} type="register" />;
+
+  async function onSubmit(
+    values: object,
+    { resetForm }: { resetForm: () => void }
+  ) {
+    const result = await fetch("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: { "Content-Type": "application/json" },
+    });
+    const res = await result.json();
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      toast.success(res.message);
+      resetForm();
+      setTimeout(() => {
+        router.replace("/");
+      }, 500);
+    }
+  }
+
+  return (
+    <>
+      <LoginRegisterForm formik={formik} type="register" />
+      <Toaster />
+    </>
+  );
 };
 
 export default RegisterPage;

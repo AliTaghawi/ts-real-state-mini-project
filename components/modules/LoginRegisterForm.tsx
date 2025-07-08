@@ -13,7 +13,7 @@ const LoginRegisterForm = ({
       <h2 className="text-2xl font-bold text-center mb-4">
         {type === "register" ? "فرم ثبت نام" : "فرم ورود به حساب کاربری"}
       </h2>
-      <form className="border-sky-400 border-2 py-4 px-8 rounded-lg">
+      <form onSubmit={formik.handleSubmit} className="border-sky-400 border-2 py-4 px-8 rounded-lg">
         <TextInput
           placeholder="ایمیل"
           title="ایمیل:"
@@ -50,8 +50,7 @@ const LoginRegisterForm = ({
           />
         ) : null}
         <button
-          type="button"
-          onClick={formik.handleSubmit}
+          type='submit'
           className="bg-emerald-500 text-white w-full py-1 px-2.5 rounded-md"
         >
           {type === "register" ? "ثبت نام" : "ورود به حساب کاربری"}

@@ -51,7 +51,7 @@ const LoginRegisterForm = ({
         ) : null}
         <button
           type='submit'
-          className="bg-emerald-500 text-white w-full py-1 px-2.5 rounded-md"
+          className="bg-emerald-500 hover:bg-emerald-500/80 mt-2 text-white w-full py-1 px-2.5 rounded-md"
         >
           {type === "register" ? "ثبت نام" : "ورود به حساب کاربری"}
         </button>

@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-sky-300 py-5 px-3 my-2 rounded-lg text-center">
+    <footer className="bg-sky-300 py-5 px-3 my-2 rounded-lg text-center">
       <p className=" inline-block">مینی پروژه فول استک املاک</p> | ساخته شده با
       تایپ اسکریپت،{" "}
       <a
@@ -23,7 +23,7 @@ const Footer = () => {
         Next.js
       </a>{" "}
       و ... &copy;
-    </div>
+    </footer>
   );
 };
 

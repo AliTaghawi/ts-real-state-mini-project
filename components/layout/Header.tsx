@@ -8,7 +8,7 @@ import MainMenu from "@/modules/layout/MainMenu";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center bg-sky-300 py-2 px-4 my-4 rounded-lg">
+    <header className="flex justify-between items-center bg-sky-300 py-2 px-4 my-4 rounded-lg">
       <HamburgerMenu />
       <MainMenu>
         <ul className="flex flex-col md:flex-row md:items-center md:gap-1 gap-2">
@@ -37,7 +37,7 @@ const Header = () => {
       <div className="flex items-center justify-end md:grow">
         <LoginProfile />
       </div>
-    </div>
+    </header>
   );
 };
 

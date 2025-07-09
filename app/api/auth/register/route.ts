@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
     const hashedPassword = await hashPassword(password);
 
     const user = await RSUser.create({ email, password: hashedPassword });
+    console.log("created user: ", user)
 
     return NextResponse.json(
       { message: StatusMessages.USER_CREATED },

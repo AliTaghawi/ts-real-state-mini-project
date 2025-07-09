@@ -18,7 +18,6 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         const { email, password = "" } = credentials ?? {};
-        console.log(email, password);
 
         try {
           await connectDB();

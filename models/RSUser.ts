@@ -5,26 +5,25 @@ const rsUserSchema = new Schema(
     email: {
       type: String,
       required: true,
-      published: {
-        type: Boolean,
-        default: false
-      }
     },
     password: {
       type: String,
       required: true,
     },
-    name: String,
-    lastName: String,
+    fullName: String,
     showName: String,
-    phone: {
-      number: String,
-      published: {
-        type: Boolean,
-        default: false
-      }
-    },
+    phone: String,
     bio: String,
+    socialPublish: {
+      email: {
+        type: Boolean,
+        default: false,
+      },
+      phone: {
+        type: Boolean,
+        default: false,
+      },
+    },
     role: {
       type: String,
       enum: ["user", "subadmin", "admin"],

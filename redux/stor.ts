@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import displaysReducer from "@/features/displays/displaysSlice";
+import userReducer from "@/features/user/userSlice";
 
 const store = configureStore({
   reducer: {
     displays: displaysReducer,
+    user: userReducer,
   },
 });
 

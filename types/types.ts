@@ -2,15 +2,6 @@ type ChildrenType = Readonly<{
   children: React.ReactNode;
 }>;
 
-interface LoginType {
-  email: string;
-  password: string;
-}
-
-interface RegisterType extends LoginType {
-  confirmPassword: string;
-}
-
 type TextInputProps = {
   title: string;
   type: string;
@@ -23,4 +14,25 @@ type TextInputProps = {
   blurHandler: () => void;
 };
 
-export type { ChildrenType, LoginType, RegisterType, TextInputProps };
+interface LoginType {
+  email: string;
+  password: string;
+}
+
+interface RegisterType extends LoginType {
+  confirmPassword: string;
+}
+
+interface fetchUserType {
+  loading: boolean;
+  user: object | null;
+  error: string | undefined;
+}
+
+export type {
+  ChildrenType,
+  TextInputProps,
+  LoginType,
+  RegisterType,
+  fetchUserType,
+};

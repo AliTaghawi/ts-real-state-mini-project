@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchUserType } from "@/types/types";
+import { FetchUserType } from "@/types/types";
 
-const initialState: fetchUserType = {
+const initialState: FetchUserType = {
   loading: false,
-  user: {},
+  user: null,
   error: "",
 };
 

@@ -1,18 +1,36 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useDispatch, useSelector } from "react-redux";
 import { TbLogin2 } from "react-icons/tb";
 import { FaRegUserCircle } from "react-icons/fa";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { RootState, AppDispatch } from "@/redux/stor";
+import { fetchUser } from "@/redux/features/user/userSlice";
 
 const LoginProfile = () => {
   const session = useSession();
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((store: RootState) => store.user.user);
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+
   return (
     <div>
       {session.status === "authenticated" ? (
-        <Link href="/dashboard" className="text-2xl">
-          <FaRegUserCircle />
-        </Link>
+        <div className="flex items-center gap-2">
+          {user?.role === "ADMIN" ? (
+            <Link href="/Admin" className="text-3xl">
+              <MdAdminPanelSettings />
+            </Link>
+          ) : null}
+          <Link href="/dashboard" className="text-2xl">
+            <FaRegUserCircle />
+          </Link>
+        </div>
       ) : (
         <Link
           href="/login"

@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models, InferSchemaType } from "mongoose";
 
 const rsUserSchema = new Schema(
   {
@@ -27,6 +27,7 @@ const rsUserSchema = new Schema(
     },
     role: {
       type: String,
+      required: true,
       enum: ["USER", "SUBADMIN", "ADMIN"],
       default: "USER",
     },
@@ -37,3 +38,5 @@ const rsUserSchema = new Schema(
 const RSUser = models.RSUser || model("RSUser", rsUserSchema);
 
 export default RSUser;
+export type UserType =  InferSchemaType<typeof rsUserSchema>
+export type SafeUser = Omit<UserType, "password">

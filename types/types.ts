@@ -1,3 +1,5 @@
+import { SafeUser } from "@/models/RSUser";
+
 type ChildrenType = Readonly<{
   children: React.ReactNode;
 }>;
@@ -23,9 +25,9 @@ interface RegisterType extends LoginType {
   confirmPassword: string;
 }
 
-interface fetchUserType {
+interface FetchUserType {
   loading: boolean;
-  user: object | null;
+  user: SafeUser | null;
   error: string | undefined;
 }
 
@@ -34,5 +36,5 @@ export type {
   TextInputProps,
   LoginType,
   RegisterType,
-  fetchUserType,
+  FetchUserType,
 };

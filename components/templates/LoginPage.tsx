@@ -1,7 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
 import { LoginType } from "@/types/types";
 import LoginRegisterForm from "@/modules/LoginRegisterForm";
 
@@ -18,6 +21,7 @@ const validationSchema = Yup.object({
 });
 
 const LoginPage = () => {
+  const router = useRouter();
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -28,9 +32,23 @@ const LoginPage = () => {
     values: object,
     { resetForm }: { resetForm: () => void }
   ) {
-    console.log(values)
+    const res = await signIn("credentials", {
+      ...values,
+      redirect: false,
+    });
+    if (res?.status === 200) {
+      resetForm();
+      router.replace("/");
+    } else if (res?.error) {
+      toast.error(res.error);
+    }
   }
-  return <LoginRegisterForm formik={formik} type="login" />;
+  return (
+    <>
+      <LoginRegisterForm formik={formik} type="login" />
+      <Toaster />
+    </>
+  );
 };
 
 export default LoginPage;

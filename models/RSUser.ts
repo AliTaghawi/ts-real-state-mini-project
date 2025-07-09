@@ -9,12 +9,13 @@ const rsUserSchema = new Schema(
     password: {
       type: String,
       required: true,
+      select: false,
     },
     fullName: String,
     showName: String,
     phone: String,
     bio: String,
-    socialPublish: {
+    showSocials: {
       email: {
         type: Boolean,
         default: false,
@@ -26,8 +27,8 @@ const rsUserSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["user", "subadmin", "admin"],
-      default: "user",
+      enum: ["USER", "SUBADMIN", "ADMIN"],
+      default: "USER",
     },
   },
   { timestamps: true }

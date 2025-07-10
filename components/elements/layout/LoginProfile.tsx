@@ -16,7 +16,7 @@ const LoginProfile = () => {
   const user = useSelector((store: RootState) => store.user.user);
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
+  }, [session.status]);
 
   return (
     <div>

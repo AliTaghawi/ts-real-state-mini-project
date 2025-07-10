@@ -34,7 +34,6 @@ export const authOptions: NextAuthOptions = {
         }
 
         const user = await RSUser.findOne({ email }).select("+password");
-        console.log(user)
         if (!user) throw new Error(StatusMessages.NOTFOUND_USER);
 
         const isValid: boolean = await verifyPassword(password, user.password);

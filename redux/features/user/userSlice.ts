@@ -23,13 +23,17 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.user = action.payload.user;
+      if (action.payload.user) {
+        state.user = action.payload.user;
+      } else if (action.payload.error) {
+        state.error = action.payload.error;
+      }
     });
-    builder.addCase(fetchUser.rejected, (state, action) => {
-      state.loading = false;
-      state.user = null;
-      state.error = action.error.message;
-    });
+    // builder.addCase(fetchUser.rejected, (state, action) => {
+    //   state.loading = false;
+    //   state.user = null;
+    //   state.error = action.error.message;
+    // });
   },
 });
 

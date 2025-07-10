@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
@@ -10,12 +11,15 @@ import { RiProfileFill } from "react-icons/ri";
 import { TbLogout } from "react-icons/tb";
 import { ChildrenType } from "@/types/types";
 import { RootState } from "@/redux/stor";
-
-const linkStyle =
-  "flex gap-1 items-center justify-center py-0.5 px-1.5 border border-sky-400 sm:w-11/12 sm:mb-4 rounded-md hover:bg-sky-50 text-xs sm:text-base transition ease-linear";
+import SidebarLink from "@/elements/dashboard/SidebarLink";
 
 const DashboardLayout = ({ children }: ChildrenType) => {
+  const session = useSession();
+  const router = useRouter();
   const user = useSelector((store: RootState) => store.user.user);
+  useEffect(() => {
+    if (session.status === "unauthenticated") router.replace("/login");
+  }, [session.status]);
 
   return (
     <div className="flex flex-col sm:flex-row items-start gap-8">
@@ -31,18 +35,21 @@ const DashboardLayout = ({ children }: ChildrenType) => {
             {user?.showName}
           </h3>
         </div>
-        <Link href="/dashboard" className={linkStyle}>
-          <TbLayoutDashboardFilled className="text-sky-400 text-base sm:text-xl" />
-          <span className="hidden xs:inline-block">داشبورد</span>
-        </Link>
-        <Link href="/dashboard/add-file" className={linkStyle}>
-          <MdAddBox className="text-sky-400 text-base sm:text-xl" />
-          <span className="hidden xs:inline-block">ثبت آگهی</span>
-        </Link>
-        <Link href="/dashboard/profile" className={linkStyle}>
-          <RiProfileFill className="text-sky-400 text-base sm:text-xl" />
-          <span className="hidden xs:inline-block">حساب کاربری</span>
-        </Link>
+        <SidebarLink
+          href="/dashboard"
+          title="داشبورد"
+          Icon={TbLayoutDashboardFilled}
+        />
+        <SidebarLink
+          href="/dashboard/add-file"
+          title="ثبت آگهی"
+          Icon={MdAddBox}
+        />
+        <SidebarLink
+          href="/dashboard/profile"
+          title="حساب کاربری"
+          Icon={RiProfileFill}
+        />
         <button
           onClick={() => signOut()}
           className="flex items-center gap-1 text-red-700 text-xs sm:text-lg sm:mb-5 mr-auto sm:mr-0 px-1.5 py-0.5 rounded-md hover:bg-red-50 transition ease-linear"

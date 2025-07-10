@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 import { useSelector } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
@@ -15,6 +16,7 @@ const linkStyle =
 
 const DashboardLayout = ({ children }: ChildrenType) => {
   const user = useSelector((store: RootState) => store.user.user);
+
   return (
     <div className="flex flex-col sm:flex-row items-start gap-8">
       <aside className="py-1.5 px-2.5 border-2 border-sky-400 rounded-lg w-full sm:w-[200px] flex sm:flex-col items-center gap-4 xs:gap-2.5 ">
@@ -41,7 +43,10 @@ const DashboardLayout = ({ children }: ChildrenType) => {
           <RiProfileFill className="text-sky-400 text-base sm:text-xl" />
           <span className="hidden xs:inline-block">حساب کاربری</span>
         </Link>
-        <button className="flex items-center gap-1 text-red-700 text-xs sm:text-lg sm:mb-5 mr-auto">
+        <button
+          onClick={() => signOut()}
+          className="flex items-center gap-1 text-red-700 text-xs sm:text-lg sm:mb-5 mr-auto sm:mr-0"
+        >
           <TbLogout className="text-xl" />
           <span className="hidden sm:inline-block">خروج</span>
         </button>

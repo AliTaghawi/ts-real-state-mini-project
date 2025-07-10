@@ -31,10 +31,17 @@ interface FetchUserType {
   error: string | undefined;
 }
 
+interface DetailsItemType {
+  title: string;
+  property: string | null | undefined;
+  bioType?: boolean
+}
+
 export type {
   ChildrenType,
   TextInputProps,
   LoginType,
   RegisterType,
   FetchUserType,
+  DetailsItemType,
 };

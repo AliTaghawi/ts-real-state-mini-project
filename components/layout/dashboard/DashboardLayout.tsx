@@ -58,7 +58,7 @@ const DashboardLayout = ({ children }: ChildrenType) => {
           <span className="hidden sm:inline-block">خروج</span>
         </button>
       </aside>
-      <main>{children}</main>
+      <main className="w-full sm:w-[calc(100%-200px-2rem)]">{children}</main>
     </div>
   );
 };

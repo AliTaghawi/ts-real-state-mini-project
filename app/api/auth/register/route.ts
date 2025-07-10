@@ -29,9 +29,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const showName : string = email.split('@')[0]
     const hashedPassword = await hashPassword(password);
 
-    const user = await RSUser.create({ email, password: hashedPassword });
+    const user = await RSUser.create({ email, password: hashedPassword, showName });
     console.log("created user: ", user)
 
     return NextResponse.json(

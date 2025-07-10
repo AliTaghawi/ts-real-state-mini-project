@@ -12,7 +12,7 @@ import { ChildrenType } from "@/types/types";
 import { RootState } from "@/redux/stor";
 
 const linkStyle =
-  "flex gap-1 items-center justify-center py-0.5 px-1.5 border border-sky-400 sm:w-11/12 sm:mb-4 rounded-md hover:bg-sky-50 text-xs sm:text-base";
+  "flex gap-1 items-center justify-center py-0.5 px-1.5 border border-sky-400 sm:w-11/12 sm:mb-4 rounded-md hover:bg-sky-50 text-xs sm:text-base transition ease-linear";
 
 const DashboardLayout = ({ children }: ChildrenType) => {
   const user = useSelector((store: RootState) => store.user.user);
@@ -45,7 +45,7 @@ const DashboardLayout = ({ children }: ChildrenType) => {
         </Link>
         <button
           onClick={() => signOut()}
-          className="flex items-center gap-1 text-red-700 text-xs sm:text-lg sm:mb-5 mr-auto sm:mr-0"
+          className="flex items-center gap-1 text-red-700 text-xs sm:text-lg sm:mb-5 mr-auto sm:mr-0 px-1.5 py-0.5 rounded-md hover:bg-red-50 transition ease-linear"
         >
           <TbLogout className="text-xl" />
           <span className="hidden sm:inline-block">خروج</span>

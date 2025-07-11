@@ -1,36 +1,75 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import { FaRegEye } from "react-icons/fa";
-import { FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
+import { MdDeleteForever } from "react-icons/md";
 import { RootState } from "@/redux/stor";
 import DetailsItem from "@/elements/profilePage/DetailsItem";
+import Link from "next/link";
+
+const linkStyle = "flex items-center text-emerald-800 hover:bg-sky-100 rounded-sm py-0.5 px-1";
 
 const ProfilePage = () => {
   const user = useSelector((store: RootState) => store.user.user);
   return (
     <>
-      <p className="mb-4 ">سلام {user?.fullName || user?.showName} جان 👋</p>
-      <div className="">
+      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+        <p>سلام {user?.fullName || user?.showName} جان 👋</p>
+        <div className="flex gap-2 bg-sky-100 py-0.5 px-1 rounded-sm">
+          <p>تاریخ عضویت:</p>
+          <span>
+            {user?.createdAt &&
+              new Date(user?.createdAt).toLocaleDateString("fa-ir")}
+          </span>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
           <DetailsItem title="نام کاربری" property={user?.email} />
-          <span className="mb-4" title="نمایش برای کاربرهای دیگر">
-            {user?.showSocials?.email ? <FaRegEye /> : <FaRegEyeSlash />}
+          <span className="max-[375px]:mt-7">
+            {user?.showSocials?.email ? (
+              <FaRegEye title="برای کاربرها نمایش داده میشود" />
+            ) : (
+              <FaRegEyeSlash title="برای کاربرها نمایش داده نمیشود" />
+            )}
           </span>
         </div>
         <DetailsItem title="نام و نام خانوادگی" property={user?.fullName} />
         <DetailsItem
-          title="نامی که نشان داده میشود"
+          title="نامی که به کاربران نشان داده میشود"
           property={user?.showName}
         />
         <div className="flex items-center gap-2">
           <DetailsItem title="شماره تماس" property={user?.phone} />
-          <span className="mb-4" title="نمایش برای کاربرهای دیگر">
-            {user?.showSocials?.email ? <FaRegEye /> : <FaRegEyeSlash />}
+          <span className="max-[375px]:mt-7">
+            {user?.showSocials?.email ? (
+              <FaRegEye title="برای کاربرها نمایش داده میشود" />
+            ) : (
+              <FaRegEyeSlash title="برای کاربرها نمایش داده نمیشود" />
+            )}
           </span>
         </div>
+        <DetailsItem title="درباره من" property={user?.bio} bioType={true} />
       </div>
-      <DetailsItem title="درباره من" property={user?.bio} bioType={true} />
+      <div className="my-4 flex gap-4 items-start flex-wrap">
+        <div className="flex gap-4 flex-wrap">
+          <Link href="/dashboard/profile/edit" className={linkStyle}>
+            <CiEdit className="text-xl" />
+            {user?.fullName && user.phone && user.bio
+              ? "تغییر"
+              : "تکمیل حساب کاربری"}
+          </Link>
+          <Link href="/dashboard/profile/change-password" className={linkStyle}>
+            <CiEdit className="text-xl" />
+            تغییر رمز عبور
+          </Link>
+        </div>
+        <button className="flex items-center py-0.5 px-1.5 border-2 border-red-700 text-red-700 hover:bg-red-50 rounded-md mr-auto text-sm transition ease-linear">
+          <MdDeleteForever className="text-xl" />
+          حذف حساب کاربری
+        </button>
+      </div>
     </>
   );
 };

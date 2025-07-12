@@ -1,4 +1,5 @@
 import { SafeUser } from "@/models/RSUser";
+import { ChangeEvent, FocusEvent } from "react";
 
 type ChildrenType = Readonly<{
   children: React.ReactNode;
@@ -9,11 +10,11 @@ type TextInputProps = {
   type: string;
   name: string;
   value: string;
-  error: string | null;
-  blur: boolean | null;
+  error: string | undefined;
+  blur: boolean | undefined;
   placeholder?: string;
-  changeHandler: () => void;
-  blurHandler: () => void;
+  changeHandler: (e: ChangeEvent<any>) => void;
+  blurHandler: (e: FocusEvent<any>) => void;
 };
 
 interface LoginType {

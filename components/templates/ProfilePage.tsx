@@ -7,6 +7,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { RootState } from "@/redux/stor";
 import DetailsItem from "@/elements/profilePage/DetailsItem";
 import Link from "next/link";
+import DeletePopup from "@/modules/profilePage/DeletePopup";
 
 const linkStyle = "flex items-center text-emerald-800 hover:bg-sky-100 rounded-sm py-0.5 px-1";
 
@@ -69,6 +70,7 @@ const ProfilePage = () => {
           <MdDeleteForever className="text-xl" />
           حذف حساب کاربری
         </button>
+        <DeletePopup />
       </div>
     </>
   );

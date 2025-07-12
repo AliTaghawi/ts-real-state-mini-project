@@ -38,4 +38,18 @@ const userSchema = Joi.object({
   }),
 });
 
-export { loginSchema, registerSchema, userSchema };
+const passwordUpdateSchema = Joi.object({
+  password: Joi.string().min(8).required().messages({
+    "string.empty": "لطفا رمز عبور خود را وارد نمایید",
+    "string.min": "رمز عبور باید بیشتر از 8 کارکتر باشد",
+  }),
+  newPassword: Joi.string().min(8).required().messages({
+    "string.empty": "لطفا رمز عبور خود را وارد نمایید",
+    "string.min": "رمز عبور باید بیشتر از 8 کارکتر باشد",
+  }),
+  confirmPassword: Joi.any().valid(Joi.ref("password")).required().messages({
+    "any.only": "تکرار رمز عبور همخوانی ندارد",
+  }),
+});
+
+export { loginSchema, registerSchema, userSchema, passwordUpdateSchema };

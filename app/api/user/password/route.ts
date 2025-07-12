@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import RSUser from "@/models/RSUser";
 import connectDB from "@/utils/connectDB";
 import { hashPassword, verifyPassword } from "@/utils/auth";
+import { passwordUpdateSchema } from "@/utils/validation";
 import { StatusCodes, StatusMessages } from "@/types/enums";
 
 export async function PATCH(req: NextRequest) {
@@ -29,7 +30,19 @@ export async function PATCH(req: NextRequest) {
 
     const { password, newPassword, confirmPassword } = await req.json();
 
-    //validation
+    try {
+      await passwordUpdateSchema.validateAsync({
+        password,
+        newPassword,
+        confirmPassword,
+      });
+    } catch (error: any) {
+      console.log(error.details[0]);
+      return NextResponse.json(
+        { error: error.details[0].message },
+        { status: StatusCodes.UNPROCESSABLE_ENTITY }
+      );
+    }
 
     const isValid = await verifyPassword(password, user.password);
     if (!isValid) {

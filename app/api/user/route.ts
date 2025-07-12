@@ -4,6 +4,7 @@ import connectDB from "@/utils/connectDB";
 import { getServerSession } from "next-auth";
 import RSUser from "@/models/RSUser";
 import { verifyPassword } from "@/utils/auth";
+import { userSchema } from "@/utils/validation";
 
 export async function GET(req: NextRequest) {
   try {
@@ -57,18 +58,31 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const { password, fullName, showName, phone, bio, showSocials } =
-      await req.json();
+    const { fullName, showName, phone, bio, showSocials } = await req.json();
 
-    // validation
-
-    const isValid = await verifyPassword(password, user.password);
-    if (!isValid) {
+    try {
+      await userSchema.validateAsync({
+        fullName,
+        showName,
+        phone,
+        bio,
+        showSocials,
+      });
+    } catch (error: any) {
+      console.log(error.details[0]);
       return NextResponse.json(
-        { error: StatusMessages.WRONG_PASSWORD },
+        { error: error.details[0].message },
         { status: StatusCodes.UNPROCESSABLE_ENTITY }
       );
     }
+
+    // const isValid = await verifyPassword(password, user.password);
+    // if (!isValid) {
+    //   return NextResponse.json(
+    //     { error: StatusMessages.WRONG_PASSWORD },
+    //     { status: StatusCodes.UNPROCESSABLE_ENTITY }
+    //   );
+    // }
 
     fullName ? (user.fullName = fullName) : null;
     showName ? (user.showName = showName) : null;
@@ -82,6 +96,61 @@ export async function PATCH(req: NextRequest) {
 
     return NextResponse.json(
       { message: StatusMessages.USER_UPDATED },
+      { status: StatusCodes.OK }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: StatusMessages.SERVER_ERROR },
+      { status: StatusCodes.SERVER_ERROR }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    await connectDB();
+
+    const session = await getServerSession();
+    if (!session) {
+      return NextResponse.json(
+        { error: StatusMessages.UNAUTHORIZED },
+        { status: StatusCodes.UNAUTHORIZED }
+      );
+    }
+
+    const user = await RSUser.findOne({ email: session.user?.email }).select(
+      "+password"
+    );
+    if (!user) {
+      return NextResponse.json(
+        { error: StatusMessages.NOTFOUND_USER },
+        { status: StatusCodes.NOTFOUND }
+      );
+    }
+
+    const { password } = await req.json();
+
+    if (!password || password.length < 8) {
+      return NextResponse.json(
+        { error: StatusMessages.INVALID_DATA },
+        { status: StatusCodes.UNPROCESSABLE_ENTITY }
+      );
+    }
+
+    const isValid = await verifyPassword(password, user.password);
+    if (!isValid) {
+      return NextResponse.json(
+        { error: StatusMessages.WRONG_PASSWORD },
+        { status: StatusCodes.UNPROCESSABLE_ENTITY }
+      );
+    }
+
+    const result = RSUser.deleteOne({ email: user.email });
+    console.log(result);
+
+    return NextResponse.json(
+      { message: StatusMessages.USER_DELETED },
       { status: StatusCodes.OK }
     );
   } catch (error) {

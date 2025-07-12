@@ -1,6 +1,6 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
@@ -8,11 +8,14 @@ import { RootState } from "@/redux/stor";
 import DetailsItem from "@/elements/profilePage/DetailsItem";
 import Link from "next/link";
 import DeletePopup from "@/modules/profilePage/DeletePopup";
+import { toggleDeletePopup } from "@/redux/features/displays/displaysSlice";
 
-const linkStyle = "flex items-center text-emerald-800 hover:bg-sky-100 rounded-sm py-0.5 px-1";
+const linkStyle ="flex items-center text-emerald-800 hover:bg-sky-100 rounded-sm py-0.5 px-1";
 
 const ProfilePage = () => {
+  const dispatch = useDispatch();
   const user = useSelector((store: RootState) => store.user.user);
+
   return (
     <>
       <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
@@ -66,7 +69,10 @@ const ProfilePage = () => {
             تغییر رمز عبور
           </Link>
         </div>
-        <button className="flex items-center py-0.5 px-1.5 border-2 border-red-700 text-red-700 hover:bg-red-50 rounded-md mr-auto text-sm transition ease-linear">
+        <button
+          onClick={() => dispatch(toggleDeletePopup())}
+          className="flex items-center py-0.5 px-1.5 border-2 border-red-700 text-red-700 hover:bg-red-50 rounded-md mr-auto text-sm transition ease-linear"
+        >
           <MdDeleteForever className="text-xl" />
           حذف حساب کاربری
         </button>

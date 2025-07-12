@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
         if (!user) throw new Error(StatusMessages.NOTFOUND_USER);
 
         const isValid: boolean = await verifyPassword(password, user.password);
-        if (!isValid) throw new Error(StatusMessages.WRONG_PASSWORD);
+        if (!isValid) throw new Error(StatusMessages.WRONG_EMAIL_PASSWORD);
 
         return { email, id: user._id };
       },

@@ -17,4 +17,25 @@ const registerSchema = loginSchema.append({
   }),
 });
 
-export { loginSchema, registerSchema };
+const userSchema = Joi.object({
+  fullName: Joi.string().optional(),
+  showName: Joi.string().min(3).required().messages({
+    "string.empty": "لطفا اسم حساب کاربری تان را کامل کنید",
+    "string.min": "نام حساب کاربری باید بیشتر از 2 کارکتر باشد",
+  }),
+  phone: Joi.string()
+    .regex(
+      /(((^(\+|00)(98)([- ]?))|^(0))(9\d{2})([- ]?)(\d{3})([- ]?)(\d{4})$)|((^(\+|00)(98)([- ]?))|^(0))([1-9]{2}[0-9]{8})$/
+    ) // iran num
+    .optional()
+    .messages({
+      "string.pattern.base": `شماره تلفن وارد شده صحیح نمی‌باشد`,
+    }),
+  bio: Joi.string().optional(),
+  showSocial: Joi.object({
+    email: Joi.boolean().optional(),
+    phone: Joi.boolean().optional(),
+  }),
+});
+
+export { loginSchema, registerSchema, userSchema };

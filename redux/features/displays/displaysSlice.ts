@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   mainMenu: false,
+  deletePopup: false,
 };
 
 const displaySlice = createSlice({
@@ -12,10 +13,21 @@ const displaySlice = createSlice({
       state.mainMenu = !state.mainMenu;
     },
     closeMainMenu: (state) => {
-      state.mainMenu = false
-    }
+      state.mainMenu = false;
+    },
+    toggleDeletePopup: (state) => {
+      state.deletePopup = !state.deletePopup;
+    },
+    closeDeletePopup: (state) => {
+      state.deletePopup = false;
+    },
   },
 });
 
 export default displaySlice.reducer;
-export const { toggleMainMenu, closeMainMenu } = displaySlice.actions;
+export const {
+  toggleMainMenu,
+  closeMainMenu,
+  toggleDeletePopup,
+  closeDeletePopup,
+} = displaySlice.actions;

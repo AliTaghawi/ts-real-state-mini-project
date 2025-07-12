@@ -1,8 +1,13 @@
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { MdDeleteForever } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import TextInput from "@/elements/TextInput";
+import { RootState } from "@/redux/stor";
+import { closeDeletePopup } from "@/redux/features/displays/displaysSlice";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 const initialValues = {
   password: "",
@@ -17,16 +22,29 @@ const validationSchema = Yup.object({
 const onSubmit = (values: object, { resetForm }: { resetForm: () => void }) => {
   console.log(values);
 };
+
 const DeletePopup = () => {
+  const ref = useRef(null);
+  const dispatch = useDispatch();
+  const isOpen = useSelector((stor: RootState) => stor.displays.deletePopup);
   const formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema,
   });
 
+  useOutsideClick(ref, () => {
+    dispatch(closeDeletePopup());
+  });
+
   return (
-    <div className="mb-[50%] fixed top-0 left-0 z-20 w-full h-full backdrop-blur-xs ">
+    <div
+      className={`mb-[50%] ${
+        isOpen ? "block" : "hidden"
+      } fixed top-0 left-0 z-20 w-full h-full backdrop-blur-xs`}
+    >
       <form
+        ref={ref}
         onSubmit={formik.handleSubmit}
         className="bg-white p-4 border-2 border-red-400 rounded-xl block w-fit mt-[150px] mx-auto"
       >

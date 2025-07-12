@@ -146,8 +146,8 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    const result = RSUser.deleteOne({ email: user.email });
-    console.log(result);
+    const result = await RSUser.findOneAndDelete({ email: user.email });
+    console.log("deleted user:", result);
 
     return NextResponse.json(
       { message: StatusMessages.USER_DELETED },

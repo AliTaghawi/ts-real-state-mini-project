@@ -1,7 +1,10 @@
 // import { useRef } from "react";
+import { redirect } from "next/navigation";
+import { signOut } from "next-auth/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import TextInput from "@/elements/TextInput";
 import { RootState } from "@/redux/stor";
@@ -18,8 +21,17 @@ const validationSchema = Yup.object({
     .required("الزامی!"),
 });
 
-const onSubmit = (values: object, { resetForm }: { resetForm: () => void }) => {
-  console.log(values);
+const onSubmit = async (values: object) => {
+  const result = await fetch("/api/user", {
+    method: "DELETE",
+    body: JSON.stringify(values),
+  });
+  const res = await result.json();
+  if (res.error) {
+    toast.error(res.error);
+  } else if (res.message) {
+    signOut();
+  }
 };
 
 const DeletePopup = () => {
@@ -67,18 +79,22 @@ const DeletePopup = () => {
         />
         <div className="flex items-center justify-between">
           <button
+            type="submit"
+            className="bg-red-400 hover:bg-red-400/85 py-0.5 px-1.5 text-white rounded-md flex items-center"
+          >
+            <MdDeleteForever className="text-xl" />
+            حذف حساب کاربری
+          </button>
+          <button
             type="button"
             onClick={cancelHandler}
             className="bg-emerald-500 hover:bg-emerald-500/85 py-0.5 px-2.5 text-white rounded-md"
           >
             انصراف
           </button>
-          <button className="bg-red-400 hover:bg-red-400/85 py-0.5 px-1.5 text-white rounded-md flex items-center">
-            <MdDeleteForever className="text-xl" />
-            حذف حساب کاربری
-          </button>
         </div>
       </form>
+      <Toaster />
     </div>
   );
 };

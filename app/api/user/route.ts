@@ -90,7 +90,7 @@ export async function PATCH(req: NextRequest) {
     bio ? (user.boi = bio) : null;
     showSocials.email ? (user.showSocials.email = showSocials.email) : null;
     showSocials.phone ? (user.showSocials.phone = showSocials.phone) : null;
-    user.save();
+    await user.save();
 
     console.log(user);
 

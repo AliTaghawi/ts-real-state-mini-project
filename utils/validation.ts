@@ -32,7 +32,7 @@ const userSchema = Joi.object({
       "string.pattern.base": `شماره تلفن وارد شده صحیح نمی‌باشد`,
     }),
   bio: Joi.string().optional(),
-  showSocial: Joi.object({
+  showSocials: Joi.object({
     email: Joi.boolean().optional(),
     phone: Joi.boolean().optional(),
   }),

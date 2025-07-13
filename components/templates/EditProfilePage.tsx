@@ -1,8 +1,10 @@
 "use client";
 
+import { redirect, RedirectType } from "next/navigation";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
 import TextInput from "@/elements/TextInput";
 import { RootState } from "@/redux/stor";
 import { FrontUser } from "@/models/RSUser";
@@ -28,7 +30,19 @@ const onSubmit = async (
   values: FrontUser,
   { resetForm }: { resetForm: () => void }
 ) => {
-  console.log(values);
+  const result = await fetch('/api/user', {
+    method: "PATCH",
+    body: JSON.stringify(values),
+    headers: {"Content-Type": "application/json"}
+  })
+  const res = await result.json()
+  if (res.error) {
+    toast.error(res.error)
+  } else {
+    toast.success(res.message)
+    resetForm()
+    redirect("/dashboard/profile", RedirectType.replace)
+  }
 };
 
 const EditProfilePage = () => {
@@ -101,24 +115,18 @@ const EditProfilePage = () => {
           <div className="flex items-center justify-between mt-2 mb-5">
             <CheckBox
               title="ایمیل"
+              id="email"
               checked={formik.values.showSocials?.email}
               onChange={formik.handleChange}
               name="showSocials.email"
             />
             <CheckBox
               title="شماره تماس"
+              id="phone"
               checked={formik.values.showSocials?.phone}
               onChange={formik.handleChange}
               name="showSocials.phone"
             />
-            {/* <div className="flex items-center gap-1 bg-neutral-200 py-0.5 px-1.5 rounded-md">
-              <label htmlFor="email">ایمیل</label>
-              <input type="checkbox" name="showSocials.email" id="email" checked={formik.values.showSocials?.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-            </div>
-            <div className="flex items-center gap-1 bg-neutral-200 py-0.5 px-1.5 rounded-md">
-              <label htmlFor="phone">شماره تماس</label>
-              <input type="checkbox" name="showSocials.phone" id="phone" checked={formik.values.showSocials?.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-            </div> */}
           </div>
         </div>
         <TextInput
@@ -149,6 +157,7 @@ const EditProfilePage = () => {
           </button>
         </div>
       </form>
+      <Toaster />
     </div>
   );
 };

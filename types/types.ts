@@ -23,6 +23,7 @@ type TextInputProps = {
 type CheckBoxProps = {
   title: string;
   name: string;
+  id: string;
   error?: string | undefined;
   touched?: boolean | undefined;
   checked: boolean | undefined;

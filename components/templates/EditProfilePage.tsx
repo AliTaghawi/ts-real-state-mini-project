@@ -40,6 +40,19 @@ const EditProfilePage = () => {
           blurHandler={() => {}}
           divClass="max-w-[400px]"
         />
+        <div className="max-w-[400px]">
+          <p>نمایش اطلاعات تماس:</p>
+          <div className="flex items-center justify-between mt-2 mb-5">
+            <div className="flex items-center gap-1 bg-neutral-200 py-0.5 px-1.5 rounded-md">
+              <label htmlFor="email">ایمیل</label>
+              <input type="checkbox" name="email" id="email" />
+            </div>
+            <div className="flex items-center gap-1 bg-neutral-200 py-0.5 px-1.5 rounded-md">
+              <label htmlFor="phone">شماره تماس</label>
+              <input type="checkbox" name="phone" id="phone" />
+            </div>
+          </div>
+        </div>
         <TextInput
           title="درباره من"
           type="text"

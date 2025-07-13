@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextInput from "@/elements/TextInput";
@@ -43,6 +44,7 @@ const onSubmit = async (
 };
 
 const ChangePasswordPage = () => {
+  const router = useRouter();
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -95,6 +97,7 @@ const ChangePasswordPage = () => {
           </button>
           <button
             type="button"
+            onClick={() => router.replace("/dashboard/profile")}
             className="bg-neutral-300 text-neutral-800 border border-neutral-400/70 py-0.5 px-2.5 rounded-md hover:bg-neutral-300/80"
           >
             انصراف

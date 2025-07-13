@@ -35,7 +35,13 @@ interface FetchUserType {
 interface DetailsItemType {
   title: string;
   property: string | null | undefined;
-  bioType?: boolean
+  bioType?: boolean;
+}
+
+interface ChangePasswordType {
+  password: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export type {
@@ -45,4 +51,5 @@ export type {
   RegisterType,
   FetchUserType,
   DetailsItemType,
+  ChangePasswordType
 };

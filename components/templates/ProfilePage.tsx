@@ -47,7 +47,7 @@ const ProfilePage = () => {
         <div className="flex items-center gap-2">
           <DetailsItem title="شماره تماس" property={user?.phone} />
           <span className="max-[375px]:mt-7">
-            {user?.showSocials?.email ? (
+            {user?.showSocials?.phone ? (
               <FaRegEye title="برای کاربرها نمایش داده میشود" />
             ) : (
               <FaRegEyeSlash title="برای کاربرها نمایش داده نمیشود" />

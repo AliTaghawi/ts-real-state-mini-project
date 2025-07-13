@@ -1,14 +1,15 @@
 "use client";
 
-import { redirect, RedirectType } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast, { Toaster } from "react-hot-toast";
 import TextInput from "@/elements/TextInput";
-import { RootState } from "@/redux/stor";
+import { AppDispatch, RootState } from "@/redux/stor";
 import { FrontUser } from "@/models/RSUser";
 import CheckBox from "@/elements/profilePage/CheckBox";
+import { fetchUser } from "@/redux/features/user/userSlice";
 
 const validationSchema = Yup.object({
   fullname: Yup.string().nullable(),
@@ -26,26 +27,9 @@ const validationSchema = Yup.object({
   }),
 });
 
-const onSubmit = async (
-  values: FrontUser,
-  { resetForm }: { resetForm: () => void }
-) => {
-  const result = await fetch('/api/user', {
-    method: "PATCH",
-    body: JSON.stringify(values),
-    headers: {"Content-Type": "application/json"}
-  })
-  const res = await result.json()
-  if (res.error) {
-    toast.error(res.error)
-  } else {
-    toast.success(res.message)
-    resetForm()
-    redirect("/dashboard/profile", RedirectType.replace)
-  }
-};
-
 const EditProfilePage = () => {
+  const router = useRouter()
+  const dispatch = useDispatch<AppDispatch>()
   const user = useSelector((store: RootState) => store.user.user);
   const initialValues: FrontUser = {
     fullName: "",
@@ -66,6 +50,26 @@ const EditProfilePage = () => {
     onSubmit,
     validationSchema,
   });
+
+  async function onSubmit(
+    values: FrontUser,
+    { resetForm }: { resetForm: () => void }
+  ) {
+    const result = await fetch("/api/user", {
+      method: "PATCH",
+      body: JSON.stringify(values),
+      headers: { "Content-Type": "application/json" },
+    });
+    const res = await result.json();
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      toast.success(res.message);
+      dispatch(fetchUser())
+      router.replace("/dashboard/profile")
+      resetForm();
+    }
+  }
 
   return (
     <div>

@@ -12,7 +12,7 @@ const DetailsItem = ({ title, property, bioType }: DetailsItemType) => {
       </label>
       <p
         className={`text-neutral-800 bg-neutral-100 border border-neutral-200 py-0.5 px-1.5 rounded-sm ${
-          bioType && "min-h-24"
+          bioType && "min-h-24 whitespace-pre-line"
         }`}
       >
         {property || (

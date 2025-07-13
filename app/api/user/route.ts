@@ -87,7 +87,7 @@ export async function PATCH(req: NextRequest) {
     fullName ? (user.fullName = fullName) : null;
     showName ? (user.showName = showName) : null;
     phone ? (user.phone = phone) : null;
-    bio ? (user.boi = bio) : null;
+    bio ? (user.bio = bio) : null;
     showSocials.email ? (user.showSocials.email = showSocials.email) : null;
     showSocials.phone ? (user.showSocials.phone = showSocials.phone) : null;
     await user.save();

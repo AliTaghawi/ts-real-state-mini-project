@@ -47,7 +47,7 @@ const passwordUpdateSchema = Joi.object({
     "string.empty": "لطفا رمز عبور خود را وارد نمایید",
     "string.min": "رمز عبور باید بیشتر از 8 کارکتر باشد",
   }),
-  confirmPassword: Joi.any().valid(Joi.ref("password")).required().messages({
+  confirmPassword: Joi.any().valid(Joi.ref("newPassword")).required().messages({
     "any.only": "تکرار رمز عبور همخوانی ندارد",
   }),
 });

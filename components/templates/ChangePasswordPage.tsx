@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextInput from "@/elements/TextInput";
 import { ChangePasswordType } from "@/types/types";
+import toast, { Toaster } from "react-hot-toast";
 
 const initialValues: ChangePasswordType = {
   password: "",
@@ -23,8 +24,22 @@ const validationSchema = Yup.object({
     .required("الزامی!"),
 });
 
-const onSubmit = (values: object, { resetForm }: { resetForm: () => void }) => {
-  console.log(values);
+const onSubmit = async (
+  values: object,
+  { resetForm }: { resetForm: () => void }
+) => {
+  const result = await fetch("/api/user/password", {
+    method: "PATCH",
+    body: JSON.stringify(values),
+    headers: { "Content-Type": "application/json" },
+  });
+  const res = await result.json();
+  if (res.error) {
+    toast.error(res.error);
+  } else {
+    toast.success(res.message);
+    resetForm();
+  }
 };
 
 const ChangePasswordPage = () => {
@@ -86,6 +101,7 @@ const ChangePasswordPage = () => {
           </button>
         </div>
       </form>
+      <Toaster />
     </div>
   );
 };

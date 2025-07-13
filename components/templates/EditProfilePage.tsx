@@ -155,6 +155,7 @@ const EditProfilePage = () => {
           </button>
           <button
             type="button"
+            onClick={() => router.replace("/dashboard/profile")}
             className="bg-neutral-300 hover:bg-neutral-300/80 border border-neutral-400/70 py-0.5 px-2.5 rounded-md"
           >
             انصراف

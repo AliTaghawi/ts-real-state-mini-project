@@ -13,6 +13,8 @@ type TextInputProps = {
   error: string | undefined;
   blur: boolean | undefined;
   placeholder?: string;
+  textarea?: boolean;
+  divClass?: string;
   changeHandler: (e: ChangeEvent<any>) => void;
   blurHandler: (e: FocusEvent<any>) => void;
 };
@@ -51,5 +53,5 @@ export type {
   RegisterType,
   FetchUserType,
   DetailsItemType,
-  ChangePasswordType
+  ChangePasswordType,
 };

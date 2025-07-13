@@ -40,3 +40,4 @@ const RSUser = models.RSUser || model("RSUser", rsUserSchema);
 export default RSUser;
 export type UserType =  InferSchemaType<typeof rsUserSchema>
 export type SafeUser = Omit<UserType, "password">
+export type FrontUser = Omit<UserType, "email" | "password" | "role" | "createdAt" | "updatedAt">

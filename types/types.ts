@@ -9,7 +9,7 @@ type TextInputProps = {
   title: string;
   type: string;
   name: string;
-  value: string;
+  value: string | undefined;
   error: string | undefined;
   blur: boolean | undefined;
   placeholder?: string;
@@ -17,6 +17,16 @@ type TextInputProps = {
   divClass?: string;
   changeHandler: (e: ChangeEvent<any>) => void;
   blurHandler: (e: FocusEvent<any>) => void;
+};
+
+type CheckBoxProps = {
+  title: string;
+  name: string;
+  error?: string | undefined;
+  touched?: boolean | undefined;
+  checked: boolean | undefined;
+  onChange: (e: ChangeEvent<any>) => void;
+  onBlur?: (e: FocusEvent<any>) => void;
 };
 
 interface LoginType {
@@ -49,6 +59,7 @@ interface ChangePasswordType {
 export type {
   ChildrenType,
   TextInputProps,
+  CheckBoxProps,
   LoginType,
   RegisterType,
   FetchUserType,

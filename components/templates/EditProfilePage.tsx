@@ -11,7 +11,12 @@ import CheckBox from "@/elements/profilePage/CheckBox";
 const validationSchema = Yup.object({
   fullname: Yup.string().nullable(),
   showName: Yup.string().nullable(),
-  phone: Yup.string().nullable(),
+  phone: Yup.string()
+    .matches(
+      /(((^(\+|00)(98)([- ]?))|^(0))(9\d{2})([- ]?)(\d{3})([- ]?)(\d{4})$)|((^(\+|00)(98)([- ]?))|^(0))([1-9]{2}[0-9]{8})$/,
+      "شماره تلفن معتبر نیست!"
+    )
+    .nullable(),
   bio: Yup.string().nullable(),
   showSocials: Yup.object({
     email: Yup.boolean().required("الزامی!"),
@@ -53,7 +58,9 @@ const EditProfilePage = () => {
       <h2 className="text-xl font-bold mb-7">فرم تغییر اطلاعات حساب کاربری.</h2>
       <form onSubmit={formik.handleSubmit}>
         <TextInput
-          title="نام و نام خانوادگی"
+          title="نام و نام خانوادگی:"
+          placeholder="نام و نام خانوادگی"
+          dir="rtl"
           type="text"
           name="fullName"
           value={formik.values.fullName ?? ""}
@@ -65,6 +72,8 @@ const EditProfilePage = () => {
         />
         <TextInput
           title="نامی که به کاربران نشان داده میشود:"
+          placeholder="نامی که به کاربران نشان داده میشود"
+          dir="rtl"
           type="text"
           name="showName"
           value={formik.values.showName ?? ""}
@@ -75,7 +84,9 @@ const EditProfilePage = () => {
           divClass="max-w-[400px]"
         />
         <TextInput
-          title="شماره تماس"
+          title="شماره تماس:"
+          placeholder="شماره تماس"
+          dir="ltr"
           type="text"
           name="phone"
           value={formik.values.phone ?? ""}
@@ -111,7 +122,9 @@ const EditProfilePage = () => {
           </div>
         </div>
         <TextInput
-          title="درباره من"
+          title="درباره من:"
+          placeholder="درباره من"
+          dir="rtl"
           type="text"
           name="bio"
           value={formik.values.bio ?? ""}

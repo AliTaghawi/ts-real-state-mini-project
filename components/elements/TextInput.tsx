@@ -12,6 +12,7 @@ const TextInput = ({
   blurHandler,
   textarea,
   divClass,
+  dir,
 }: TextInputProps) => {
   return (
     <div
@@ -22,11 +23,14 @@ const TextInput = ({
       <label>{title}</label>
       {textarea ? (
         <textarea
+          dir={dir}
           className={`py-1 px-2 border ${
             blur && error
               ? "border-red-400 outline-red-400"
               : "border-sky-400 outline-sky-400"
-          } rounded-md text-left min-h-[100px]`}
+          } rounded-md min-h-[100px] ${
+            dir === "rtl" ? "text-right" : "text-left"
+          }`}
           placeholder={placeholder ?? ""}
           name={name}
           value={value}
@@ -35,11 +39,12 @@ const TextInput = ({
         />
       ) : (
         <input
+          dir={dir}
           className={`py-1 px-2 border ${
             blur && error
               ? "border-red-400 outline-red-400"
               : "border-sky-400 outline-sky-400"
-          } rounded-md text-left`}
+          } rounded-md ${dir === "rtl" ? "text-right" : "text-left"}`}
           type={type}
           placeholder={placeholder ?? ""}
           name={name}

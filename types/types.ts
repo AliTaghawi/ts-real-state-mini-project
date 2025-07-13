@@ -15,6 +15,7 @@ type TextInputProps = {
   placeholder?: string;
   textarea?: boolean;
   divClass?: string;
+  dir?: string;
   changeHandler: (e: ChangeEvent<any>) => void;
   blurHandler: (e: FocusEvent<any>) => void;
 };

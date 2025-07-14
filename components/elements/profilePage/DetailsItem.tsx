@@ -3,7 +3,7 @@ import { DetailsItemType } from "@/types/types";
 const DetailsItem = ({ title, property, bioType }: DetailsItemType) => {
   return (
     <div
-      className={`min-w-[250px] flex gap-1 flex-wrap flex-col items-stretch ${
+      className={`flex gap-1 flex-wrap flex-col items-stretch max-[375px]:items-start ${
         bioType ? "flex-col" : "min-[375px]:items-center min-[375px]:flex-row"
       }`}
     >

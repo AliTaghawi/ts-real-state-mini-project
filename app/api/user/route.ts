@@ -88,11 +88,9 @@ export async function PATCH(req: NextRequest) {
     showName ? (user.showName = showName) : null;
     phone ? (user.phone = phone) : null;
     bio ? (user.bio = bio) : null;
-    showSocials.email ? (user.showSocials.email = showSocials.email) : null;
-    showSocials.phone ? (user.showSocials.phone = showSocials.phone) : null;
+    user.showSocials.email = showSocials.email;
+    user.showSocials.phone = showSocials.phone;
     await user.save();
-
-    console.log(user);
 
     return NextResponse.json(
       { message: StatusMessages.USER_UPDATED },

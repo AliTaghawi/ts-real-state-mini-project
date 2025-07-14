@@ -28,8 +28,8 @@ const validationSchema = Yup.object({
 });
 
 const EditProfilePage = () => {
-  const router = useRouter()
-  const dispatch = useDispatch<AppDispatch>()
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((store: RootState) => store.user.user);
   const initialValues: FrontUser = {
     fullName: "",
@@ -55,6 +55,7 @@ const EditProfilePage = () => {
     values: FrontUser,
     { resetForm }: { resetForm: () => void }
   ) {
+    console.log(values);
     const result = await fetch("/api/user", {
       method: "PATCH",
       body: JSON.stringify(values),
@@ -65,9 +66,11 @@ const EditProfilePage = () => {
       toast.error(res.error);
     } else {
       toast.success(res.message);
-      dispatch(fetchUser())
-      router.replace("/dashboard/profile")
-      resetForm();
+      dispatch(fetchUser());
+      setTimeout(() => {
+        router.replace("/dashboard/profile");
+        resetForm();
+      }, 500);
     }
   }
 
@@ -149,14 +152,14 @@ const EditProfilePage = () => {
         <div className="flex items-center justify-between mb-8">
           <button
             type="submit"
-            className="bg-emerald-500 hover:bg-emerald-500/80 text-white py-0.5 px-2.5 rounded-md"
+            className="bg-emerald-500 hover:bg-emerald-500/80 text-white py-0.5 px-2.5 rounded-md transition ease-linear"
           >
             ثبت تغییرات
           </button>
           <button
             type="button"
             onClick={() => router.replace("/dashboard/profile")}
-            className="bg-neutral-300 hover:bg-neutral-300/80 border border-neutral-400/70 py-0.5 px-2.5 rounded-md"
+            className="bg-neutral-300 hover:bg-neutral-300/80 border border-neutral-400/70 py-0.5 px-2.5 rounded-md transition ease-linear"
           >
             انصراف
           </button>

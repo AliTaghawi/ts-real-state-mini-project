@@ -10,7 +10,7 @@ import Link from "next/link";
 import DeletePopup from "@/modules/profilePage/DeletePopup";
 import { toggleDeletePopup } from "@/redux/features/displays/displaysSlice";
 
-const linkStyle ="flex items-center text-emerald-800 hover:bg-sky-100 rounded-sm py-0.5 px-1";
+const linkStyle ="flex items-center text-emerald-800 hover:bg-sky-100 rounded-sm py-0.5 px-1 transition ease-linear";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ const ProfilePage = () => {
           <Link href="/dashboard/profile/edit" className={linkStyle}>
             <CiEdit className="text-xl" />
             {user?.fullName && user.phone && user.bio
-              ? "تغییر"
+              ? "تغییر حساب کاربری"
               : "تکمیل حساب کاربری"}
           </Link>
           <Link href="/dashboard/profile/change-password" className={linkStyle}>

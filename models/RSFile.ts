@@ -1,6 +1,6 @@
 import { InferSchemaType, Schema, model, models } from "mongoose";
 
-const filesSchema = new Schema(
+const fileSchema = new Schema(
   {
     title: {
       type: String,
@@ -64,7 +64,7 @@ const filesSchema = new Schema(
   { timestamps: true }
 );
 
-const RSFiles = models.RSFiles || model("RSFiles", filesSchema)
+const RSFile = models.RSFile || model("RSFile", fileSchema)
 
-export default RSFiles
-export type FilesType = InferSchemaType<typeof filesSchema>
+export default RSFile
+export type FileType = InferSchemaType<typeof fileSchema>

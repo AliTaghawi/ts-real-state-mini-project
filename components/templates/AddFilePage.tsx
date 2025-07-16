@@ -2,6 +2,7 @@
 
 import RadioInput from "@/elements/addFilePage/RadioInput";
 import TextInput from "@/elements/TextInput";
+import CustomDatePicker from "@/modules/addFilePage/CustomDatePicker";
 
 const AddFilePage = () => {
   return (
@@ -37,6 +38,7 @@ const AddFilePage = () => {
               <RadioInput title="دفتر" value="office" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
             </div>
           </div>
+          <CustomDatePicker />
       </form>
     </div>
   );

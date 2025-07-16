@@ -31,6 +31,18 @@ type CheckBoxProps = {
   onBlur?: (e: FocusEvent<any>) => void;
 };
 
+type RadioInputProps = {
+  title: string;
+  name: string;
+  value: string | undefined;
+  error: string | undefined;
+  blur: boolean | undefined;
+  checked: boolean;
+  divClass?: string;
+  onChange: () => void;
+  onBlur: () => void;
+};
+
 interface LoginType {
   email: string;
   password: string;
@@ -62,6 +74,7 @@ export type {
   ChildrenType,
   TextInputProps,
   CheckBoxProps,
+  RadioInputProps,
   LoginType,
   RegisterType,
   FetchUserType,

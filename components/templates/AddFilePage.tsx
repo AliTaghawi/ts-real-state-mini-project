@@ -1,5 +1,6 @@
 "use client"
 
+import RadioInput from "@/elements/addFilePage/RadioInput";
 import TextInput from "@/elements/TextInput";
 
 const AddFilePage = () => {
@@ -14,6 +15,14 @@ const AddFilePage = () => {
         <TextInput divClass=" w-fit min-w-[300px]" title="آدرس:" type="text" name="address" value="" blur error="" changeHandler={() => {}} blurHandler={() => {}} />
         <TextInput divClass=" w-fit min-w-[300px]" title="بنگاه:" type="text" name="realState" value="" blur error="" changeHandler={() => {}} blurHandler={() => {}} />
         <TextInput divClass=" w-fit min-w-[300px]" title="شماره تماس:" type="text" name="phone" value="" blur error="" changeHandler={() => {}} blurHandler={() => {}} />
+          <div>
+            <p>نوع آگهی:</p>
+            <div className="flex items-center justify-between gap-4 mt-3 mb-8 max-w-[300px]">
+              <RadioInput title="اجاره" value="rent" name="fileType" checked blur error="" onChange={() => {}} onBlur={() => {}} />
+              <RadioInput title="رهن" value="mortgage" name="fileType" checked blur error="" onChange={() => {}} onBlur={() => {}} />
+              <RadioInput title="خرید" value="buy" name="fileType" checked blur error="" onChange={() => {}} onBlur={() => {}} />
+            </div>
+          </div>
       </div>
     </div>
   );

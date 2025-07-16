@@ -26,10 +26,14 @@ const fileSchema = new Schema(
       type: String,
       required: true,
     },
-    paymentType: {
+    fileType: {
       type: String,
       enum: ["rent", "mortgage", "buy"],
       required: true,
+    },
+    areaMeter: {
+      type: Number,
+      required: true
     },
     price: {
       type: Number || { rent: Number, mortgage: Number },

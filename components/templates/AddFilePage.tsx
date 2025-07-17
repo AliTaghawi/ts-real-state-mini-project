@@ -4,25 +4,26 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import AddFileForm from "@/modules/addFilePage/AddFileForm";
 
-interface initialValuesType {
-  title: string;
-  description: string;
-  location: string;
-  address: string;
-  realState: string;
-  phone: string;
-  fileType: "rent" | "mortgage" | "buy";
-  areaMeter: number;
-  price: number;
-  rent: number;
-  mortgage: number;
-  category: "villa" | "apartment" | "store" | "office" | "land";
-  constructionDate: Date;
-  amenities: string[];
-  rules: string[];
-}
+// export interface InitialValuesType {
+//   title: string;
+//   description: string;
+//   location: string;
+//   address: string;
+//   realState: string;
+//   phone: string;
+//   fileType: "rent" | "mortgage" | "buy";
+//   areaMeter: number | string;
+//   price: number | string;
+//   rent: number | string;
+//   mortgage: number | string;
+//   category: "villa" | "apartment" | "store" | "office" | "land";
+//   constructionDate: Date;
+//   amenities: string[];
+//   rules: string[];
+// }
 
-const initialValues: initialValuesType = {
+// const initialValues: InitialValuesType = {
+const initialValues = {
   title: "",
   description: "",
   location: "",
@@ -81,7 +82,17 @@ const validationSchema = Yup.object({
   rules: Yup.array().of(Yup.string()),
 });
 
+const onSubmit = (values: any) => {
+  console.log(values);
+};
+
 const AddFilePage = () => {
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
   return (
     <div>
       <h2 className="text-xl font-bold mb-7">فرم ثبت آگهی</h2>

@@ -97,7 +97,7 @@ const AddFileForm = ({ formik }: { formik: any }) => {
         changeHandler={formik.handleChange}
         blurHandler={formik.handleBlur}
       />
-      <FileTypeList />
+      <FileTypeList formik={formik} />
       {formik.values.fileType === "rent" ? (
         <div className=" flex flex-wrap justify-between min-[410px]:gap-4 w-full max-w-[390px]">
           <TextInput
@@ -139,7 +139,7 @@ const AddFileForm = ({ formik }: { formik: any }) => {
           blurHandler={formik.handleBlur}
         />
       )}
-      <CategoryList />
+      <CategoryList formik={formik} />
       <CustomDatePicker />
       <TextList title="امکانات رفاهی:" />
       <TextList title="قوانین:" />

@@ -1,6 +1,6 @@
 import RadioInput from "@/elements/addFilePage/RadioInput";
 
-const FileTypeList = () => {
+const FileTypeList = ({ formik }: { formik: any }) => {
   return (
     <div>
       <p>نوع آگهی:</p>
@@ -9,31 +9,31 @@ const FileTypeList = () => {
           title="اجاره"
           value="rent"
           name="fileType"
-          checked
-          blur
-          error=""
-          onChange={() => {}}
-          onBlur={() => {}}
+          checked={formik.values.fileType === "rent"}
+          blur={formik.touched.fileType}
+          error={formik.errors.fileType}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         <RadioInput
           title="رهن"
           value="mortgage"
           name="fileType"
-          checked
-          blur
-          error=""
-          onChange={() => {}}
-          onBlur={() => {}}
+          checked={formik.values.fileType === "mortgage"}
+          blur={formik.touched.fileType}
+          error={formik.errors.fileType}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
         <RadioInput
           title="خرید"
           value="buy"
           name="fileType"
-          checked
-          blur
-          error=""
-          onChange={() => {}}
-          onBlur={() => {}}
+          checked={formik.values.fileType === "buy"}
+          blur={formik.touched.fileType}
+          error={formik.errors.fileType}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
       </div>
     </div>

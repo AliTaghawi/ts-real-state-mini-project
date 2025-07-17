@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import AddFileForm from "@/modules/addFilePage/AddFileForm";
 
-export interface InitialValuesType {
+interface InitialValuesType {
   title: string;
   description: string;
   location: string;
@@ -17,7 +17,7 @@ export interface InitialValuesType {
   rent: number;
   mortgage: number;
   category: "villa" | "apartment" | "store" | "office" | "land";
-  constructionDate: Date | null;
+  constructionDate: Date ;
   amenities: string[];
   rules: string[];
 }
@@ -35,7 +35,7 @@ const initialValues: InitialValuesType = {
   rent: 0,
   mortgage: 0,
   category: "apartment",
-  constructionDate: null,
+  constructionDate: new Date(),
   amenities: [],
   rules: [],
 };

@@ -140,7 +140,7 @@ const AddFileForm = ({ formik }: { formik: any }) => {
         />
       )}
       <CategoryList formik={formik} />
-      <CustomDatePicker />
+      <CustomDatePicker formik={formik} />
       <TextList title="امکانات رفاهی:" />
       <TextList title="قوانین:" />
       <button

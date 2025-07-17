@@ -3,6 +3,7 @@
 import RadioInput from "@/elements/addFilePage/RadioInput";
 import TextInput from "@/elements/TextInput";
 import CustomDatePicker from "@/modules/addFilePage/CustomDatePicker";
+import TextList from "@/modules/addFilePage/TextList";
 
 const AddFilePage = () => {
   return (
@@ -29,16 +30,18 @@ const AddFilePage = () => {
           <TextInput divClass="w-full min-[410px]:w-[170px]" dir="rtl" title="اجاره (تومان):" type="text" name="price" value="" blur error="" changeHandler={() => {}} blurHandler={() => {}} />
           <TextInput divClass="w-full min-[410px]:w-[170px]" dir="rtl" title="رهن (تومان):" type="text" name="price" value="" blur error="" changeHandler={() => {}} blurHandler={() => {}} />
         </div>
-          <div>
-            <p>نوع ملک:</p>
-            <div className="flex flex-col items-start min-[350px]:flex-row min-[350px]:items-center justify-between gap-4 mt-3 mb-8 max-w-[400px] ">
-              <RadioInput title="ویلا" value="villa" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
-              <RadioInput title="آپارتمان" value="apartment" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
-              <RadioInput title="مغازه" value="store" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
-              <RadioInput title="دفتر" value="office" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
-            </div>
+        <div>
+          <p>نوع ملک:</p>
+          <div className="flex flex-col items-start min-[350px]:flex-row min-[350px]:items-center justify-between gap-4 mt-3 mb-8 max-w-[400px] ">
+            <RadioInput title="ویلا" value="villa" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
+            <RadioInput title="آپارتمان" value="apartment" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
+            <RadioInput title="مغازه" value="store" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
+            <RadioInput title="دفتر" value="office" name="category" checked blur error="" onChange={() => {}} onBlur={() => {}} />
           </div>
-          <CustomDatePicker />
+        </div>
+        <CustomDatePicker />
+        <TextList title="امکانات رفاهی:" />
+        <TextList title="قوانین:" />
       </form>
     </div>
   );

@@ -33,10 +33,10 @@ const fileSchema = new Schema(
     },
     areaMeter: {
       type: Number,
-      required: true
+      required: true,
     },
     price: {
-      type: Number || { rent: Number, mortgage: Number },
+      type: Schema.Types.Mixed,
       required: true,
     },
     category: {
@@ -68,7 +68,11 @@ const fileSchema = new Schema(
   { timestamps: true }
 );
 
-const RSFile = models.RSFile || model("RSFile", fileSchema)
+const RSFile = models.RSFile || model("RSFile", fileSchema);
 
-export default RSFile
-export type FileType = InferSchemaType<typeof fileSchema>
+export default RSFile;
+export type FileType = InferSchemaType<typeof fileSchema>;
+export type FrontFileType = Omit<
+  FileType,
+  "createdAt" | "updatedAt" | "userId" | "published"
+>;

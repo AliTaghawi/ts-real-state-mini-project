@@ -14,7 +14,7 @@ const RadioInput = ({
 }: RadioInputProps) => {
   return (
     <div
-      className={`flex items-center gap-1 py-0.5 px-2 rounded-sm border transition ease-linear ${
+      className={`flex items-center justify-center gap-1 py-0.5 px-2 rounded-sm border transition ease-linear ${
         blur && error
           ? "text-red-700 bg-red-100 border-red-400 hover:bg-red-200"
           : "text-emerald-800 bg-sky-100 border-sky-400 hover:bg-sky-200"

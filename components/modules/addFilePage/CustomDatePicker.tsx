@@ -11,6 +11,7 @@ const CustomDatePicker = () => {
         calendar={persian}
         locale={persian_fa}
         calendarPosition="bottom-right"
+        placeholder="تاریخ ساخت بنا"
       />
     </div>
   );

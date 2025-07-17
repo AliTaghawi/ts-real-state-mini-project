@@ -4,9 +4,9 @@ import CustomDatePicker from "@/modules/addFilePage/CustomDatePicker";
 import FileTypeList from "@/modules/addFilePage/FileTypeList";
 import TextList from "@/modules/addFilePage/TextList";
 
-const AddFileForm = () => {
+const AddFileForm = ({ formik }: { formik: any }) => {
   return (
-    <form>
+    <form onSubmit={formik.handleSubmit}>
       <TextInput
         divClass="w-full max-w-[390px]"
         dir="rtl"
@@ -14,11 +14,11 @@ const AddFileForm = () => {
         placeholder="عنوان آگهی"
         type="text"
         name="title"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
+        value={formik.values.title}
+        blur={formik.touched.title}
+        error={formik.errors.title}
+        changeHandler={formik.handleChange}
+        blurHandler={formik.handleBlur}
       />
       <TextInput
         divClass="w-full max-w-[390px]"
@@ -27,24 +27,24 @@ const AddFileForm = () => {
         placeholder="توضیحات آگهی"
         type="text"
         name="description"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
+        value={formik.values.description}
+        blur={formik.touched.description}
+        error={formik.errors.description}
+        changeHandler={formik.handleChange}
+        blurHandler={formik.handleBlur}
         textarea={true}
       />
       <TextInput
         divClass="w-full max-w-[390px]"
         title="متراژ:"
         placeholder="به عدد"
-        type="text"
+        type="number"
         name="areaMeter"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
+        value={formik.values.areaMeter}
+        blur={formik.touched.areaMeter}
+        error={formik.errors.areaMeter}
+        changeHandler={formik.handleChange}
+        blurHandler={formik.handleBlur}
       />
       <TextInput
         divClass="w-full max-w-[390px]"
@@ -53,11 +53,11 @@ const AddFileForm = () => {
         placeholder="مثال: تهران محدوده ستارخان"
         type="text"
         name="location"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
+        value={formik.values.location}
+        blur={formik.touched.location}
+        error={formik.errors.location}
+        changeHandler={formik.handleChange}
+        blurHandler={formik.handleBlur}
       />
       <TextInput
         divClass="w-full max-w-[390px]"
@@ -66,11 +66,11 @@ const AddFileForm = () => {
         placeholder="آدرس کامل"
         type="text"
         name="address"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
+        value={formik.values.address}
+        blur={formik.touched.address}
+        error={formik.errors.address}
+        changeHandler={formik.handleChange}
+        blurHandler={formik.handleBlur}
       />
       <TextInput
         divClass="w-full max-w-[390px]"
@@ -79,11 +79,11 @@ const AddFileForm = () => {
         placeholder="آگهی شخصی یا نام بنگاه آگهی دهنده"
         type="text"
         name="realState"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
+        value={formik.values.realState}
+        blur={formik.touched.realState}
+        error={formik.errors.realState}
+        changeHandler={formik.handleChange}
+        blurHandler={formik.handleBlur}
       />
       <TextInput
         divClass="w-full max-w-[390px]"
@@ -91,56 +91,62 @@ const AddFileForm = () => {
         placeholder="شماره ایران"
         type="text"
         name="phone"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
+        value={formik.values.phone}
+        blur={formik.touched.phone}
+        error={formik.errors.phone}
+        changeHandler={formik.handleChange}
+        blurHandler={formik.handleBlur}
       />
       <FileTypeList />
-      <TextInput
-        divClass="w-full max-w-[390px]"
-        title="قیمت (تومان):"
-        placeholder="به عدد"
-        type="text"
-        name="price"
-        value=""
-        blur
-        error=""
-        changeHandler={() => {}}
-        blurHandler={() => {}}
-      />
-      <div className=" flex flex-wrap justify-between min-[410px]:gap-4 w-full max-w-[390px]">
+      {formik.values.fileType === "rent" ? (
+        <div className=" flex flex-wrap justify-between min-[410px]:gap-4 w-full max-w-[390px]">
+          <TextInput
+            divClass="w-full min-[410px]:w-[170px]"
+            title="اجاره (تومان):"
+            placeholder="به عدد"
+            type="number"
+            name="rent"
+            value={formik.values.rent}
+            blur={formik.touched.rent}
+            error={formik.errors.rent}
+            changeHandler={formik.handleChange}
+            blurHandler={formik.handleBlur}
+          />
+          <TextInput
+            divClass="w-full min-[410px]:w-[170px]"
+            title="رهن (تومان):"
+            placeholder="به عدد"
+            type="number"
+            name="mortgage"
+            value={formik.values.mortgage}
+            blur={formik.touched.mortgage}
+            error={formik.errors.mortgage}
+            changeHandler={formik.handleChange}
+            blurHandler={formik.handleBlur}
+          />
+        </div>
+      ) : (
         <TextInput
-          divClass="w-full min-[410px]:w-[170px]"
-          title="اجاره (تومان):"
+          divClass="w-full max-w-[390px]"
+          title="قیمت (تومان):"
           placeholder="به عدد"
-          type="text"
+          type="number"
           name="price"
-          value=""
-          blur
-          error=""
-          changeHandler={() => {}}
-          blurHandler={() => {}}
+          value={formik.values.price}
+          blur={formik.touched.price}
+          error={formik.errors.price}
+          changeHandler={formik.handleChange}
+          blurHandler={formik.handleBlur}
         />
-        <TextInput
-          divClass="w-full min-[410px]:w-[170px]"
-          title="رهن (تومان):"
-          placeholder="به عدد"
-          type="text"
-          name="price"
-          value=""
-          blur
-          error=""
-          changeHandler={() => {}}
-          blurHandler={() => {}}
-        />
-      </div>
+      )}
       <CategoryList />
       <CustomDatePicker />
       <TextList title="امکانات رفاهی:" />
       <TextList title="قوانین:" />
-      <button className="py-1 mb-12 mt-5 w-full max-w-[390px] rounded-md border border-sky-500 bg-sky-200 hover:bg-sky-300 transition ease-linear">
+      <button
+        type="submit"
+        className="py-1 mb-12 mt-5 w-full max-w-[390px] rounded-md border border-sky-500 bg-sky-200 hover:bg-sky-300 transition ease-linear"
+      >
         ثبت آگهی
       </button>
     </form>

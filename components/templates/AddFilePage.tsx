@@ -4,26 +4,25 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import AddFileForm from "@/modules/addFilePage/AddFileForm";
 
-// export interface InitialValuesType {
-//   title: string;
-//   description: string;
-//   location: string;
-//   address: string;
-//   realState: string;
-//   phone: string;
-//   fileType: "rent" | "mortgage" | "buy";
-//   areaMeter: number | string;
-//   price: number | string;
-//   rent: number | string;
-//   mortgage: number | string;
-//   category: "villa" | "apartment" | "store" | "office" | "land";
-//   constructionDate: Date;
-//   amenities: string[];
-//   rules: string[];
-// }
+export interface InitialValuesType {
+  title: string;
+  description: string;
+  location: string;
+  address: string;
+  realState: string;
+  phone: string;
+  fileType: "rent" | "mortgage" | "buy";
+  areaMeter: number;
+  price: number;
+  rent: number;
+  mortgage: number;
+  category: "villa" | "apartment" | "store" | "office" | "land";
+  constructionDate: Date | null;
+  amenities: string[];
+  rules: string[];
+}
 
-// const initialValues: InitialValuesType = {
-const initialValues = {
+const initialValues: InitialValuesType = {
   title: "",
   description: "",
   location: "",
@@ -31,12 +30,12 @@ const initialValues = {
   realState: "",
   phone: "",
   fileType: "rent",
-  areaMeter: 30,
+  areaMeter: 10,
   price: 0,
   rent: 0,
   mortgage: 0,
   category: "apartment",
-  constructionDate: new Date(),
+  constructionDate: null,
   amenities: [],
   rules: [],
 };
@@ -47,31 +46,42 @@ const validationSchema = Yup.object({
   location: Yup.string().required("الزامی!"),
   address: Yup.string().required("الزامی!"),
   realState: Yup.string().required("الزامی!"),
-  phone: Yup.string().required("الزامی!"),
+  phone: Yup.string()
+    .matches(
+      /(((^(\+|00)(98)([- ]?))|^(0))(9\d{2})([- ]?)(\d{3})([- ]?)(\d{4})$)|((^(\+|00)(98)([- ]?))|^(0))([1-9]{2}[0-9]{8})$/,
+      "شماره تلفن معتبر نیست!"
+    )
+    .required("الزامی!"),
   fileType: Yup.string().oneOf(["rent", "mortgage", "buy"]).required("الزامی!"),
   areaMeter: Yup.number()
-    .min(15, "حداقل متراژ باید 15 متر باشد")
+    .min(10, "حداقل متراژ باید 10 متر باشد")
     .required("الزامی!"),
-  price: Yup.number().when("fileType", {
-    is: (val: string) => val !== "rent",
-    then: (schema) =>
-      schema.typeError("یک عدد وارد کنید").required("قیمت الزامی است"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
-  rent: Yup.number().when("fileType", {
-    is: "rent",
-    then: (schema) =>
-      schema
-        .typeError("یک عدد وارد کنید")
-        .required("مبلغ اجاره ماهانه الزامی است"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
-  mortgage: Yup.number().when("fileType", {
-    is: "rent",
-    then: (schema) =>
-      schema.typeError("یک عدد وارد کنید").required("مبلغ رهن الزامی است"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  price: Yup.number()
+    .min(1000, "باید بیشتر از هزار تومان باشد!")
+    .when("fileType", {
+      is: (val: string) => val !== "rent",
+      then: (schema) =>
+        schema.typeError("یک عدد وارد کنید").required("قیمت الزامی است"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+  rent: Yup.number()
+    .min(1000, "باید بیشتر از هزار تومان باشد!")
+    .when("fileType", {
+      is: "rent",
+      then: (schema) =>
+        schema
+          .typeError("یک عدد وارد کنید")
+          .required("مبلغ اجاره ماهانه الزامی است"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+  mortgage: Yup.number()
+    .min(1000, "باید بیشتر از هزار تومان باشد!")
+    .when("fileType", {
+      is: "rent",
+      then: (schema) =>
+        schema.typeError("یک عدد وارد کنید").required("مبلغ رهن الزامی است"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   category: Yup.string()
     .oneOf(["villa", "apartment", "store", "office", "land"])
     .required("الزامی!"),
@@ -96,7 +106,7 @@ const AddFilePage = () => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-7">فرم ثبت آگهی</h2>
-      <AddFileForm />
+      <AddFileForm formik={formik} />
     </div>
   );
 };

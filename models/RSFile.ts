@@ -1,6 +1,24 @@
 import { InferSchemaType, Schema, model, models } from "mongoose";
 
-const fileSchema = new Schema(
+interface RSFileTypes {
+  title: string;
+  description: string;
+  location: string;
+  address: string;
+  realState: string;
+  phone: string;
+  fileType: "rent" | "mortgage" | "buy";
+  areaMeter: number;
+  price: number | { rent: number; mortgage: number };
+  category: "villa" | "apartment" | "store" | "office" | "land";
+  constructionDate: Date;
+  amenities: string[];
+  rules: string[];
+  userId: Schema.Types.ObjectId;
+  published: boolean;
+}
+
+const fileSchema = new Schema<RSFileTypes>(
   {
     title: {
       type: String,
@@ -59,6 +77,7 @@ const fileSchema = new Schema(
     userId: {
       type: Schema.Types.ObjectId,
       ref: "RSUser",
+      required: true,
     },
     published: {
       type: Boolean,

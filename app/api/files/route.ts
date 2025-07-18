@@ -41,7 +41,8 @@ export async function POST(req: Request) {
 
     const newFile = await RSFile.create({
       ...body,
-      userId: Types.ObjectId.createFromHexString(user._id),
+      // user._id is ObjectId so no need for conversion,
+      userId: user._id,
     });
 
     console.log(newFile);

@@ -80,7 +80,7 @@ const fileValidationSchema = Joi.object({
   constructionDate: Joi.date()
     .required()
     .messages({ "date.empty": `لطفا تاریخ ساخت را وارد نمایید` }),
-  paymentType: Joi.string()
+  fileType: Joi.string()
     .regex(/rent|mortgage|buy/)
     .required()
     .messages({ "string.empty": `لطفا نوع ملک را مشخص کنید` }),
@@ -88,6 +88,11 @@ const fileValidationSchema = Joi.object({
     .regex(/villa|office|store|apartment|land/)
     .required()
     .messages({ "string.empty": `لطفا نوع ملک را مشخص کنید` }),
+  areaMeter: Joi.number().min(10).required().messages({
+    "number.base": `متراژ باید با عدد نوشته شود`,
+    "number.min": "حداقل متراژ باید 10 متر باشد",
+    "number.empty": "لطفا متراژ را وارد نمایید",
+  }),
   price: [
     Joi.number().required().messages({
       "number.base": `قیمت باید با عدد نوشته شود`,
@@ -108,4 +113,10 @@ const fileValidationSchema = Joi.object({
   amenities: Joi.array().items(Joi.string()),
 });
 
-export { loginSchema, registerSchema, userSchema, passwordUpdateSchema, fileValidationSchema };
+export {
+  loginSchema,
+  registerSchema,
+  userSchema,
+  passwordUpdateSchema,
+  fileValidationSchema,
+};

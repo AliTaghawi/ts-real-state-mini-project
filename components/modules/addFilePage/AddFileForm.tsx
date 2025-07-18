@@ -141,8 +141,8 @@ const AddFileForm = ({ formik }: { formik: any }) => {
       )}
       <CategoryList formik={formik} />
       <CustomDatePicker formik={formik} />
-      <TextList title="امکانات رفاهی:" />
-      <TextList title="قوانین:" />
+      <TextList title="امکانات رفاهی:" value={formik.values.amenities} formik={formik} field="amenities" />
+      <TextList title="قوانین:" value={formik.values.rules} formik={formik} field="rules" />
       <button
         type="submit"
         className="py-1 mb-12 mt-5 w-full max-w-[390px] rounded-md border border-sky-500 bg-sky-200 hover:bg-sky-300 transition ease-linear"

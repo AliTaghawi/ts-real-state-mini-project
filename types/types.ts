@@ -31,6 +31,13 @@ type CheckBoxProps = {
   onBlur?: (e: FocusEvent<any>) => void;
 };
 
+type TextListProps = {
+  title: string;
+  value: string[];
+  field: String;
+  formik: any;
+};
+
 type RadioInputProps = {
   title: string;
   name: string;
@@ -75,6 +82,7 @@ export type {
   TextInputProps,
   CheckBoxProps,
   RadioInputProps,
+  TextListProps,
   LoginType,
   RegisterType,
   FetchUserType,

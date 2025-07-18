@@ -2,6 +2,7 @@
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
 import AddFileForm from "@/modules/addFilePage/AddFileForm";
 
 interface InitialValuesType {
@@ -17,7 +18,7 @@ interface InitialValuesType {
   rent: number;
   mortgage: number;
   category: "villa" | "apartment" | "store" | "office" | "land";
-  constructionDate: Date ;
+  constructionDate: Date;
   amenities: string[];
   rules: string[];
 }
@@ -92,8 +93,33 @@ const validationSchema = Yup.object({
   rules: Yup.array().of(Yup.string()),
 });
 
-const onSubmit = (values: any) => {
-  console.log(values);
+const onSubmit = async (
+  values: any,
+  { resetForm }: { resetForm: () => void }
+) => {
+  const price =
+    values.fileType === "rent"
+      ? { rent: +values.rent, mortgage: +values.mortgage }
+      : +values.price;
+  const payload = {
+    ...values,
+    areaMeter: +values.areaMeter,
+    price,
+  };
+  delete payload.rent;
+  delete payload.mortgage;
+  const result = await fetch("/api/files", {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json" },
+  });
+  const res = await result.json();
+  if (res.error) {
+    toast.error(res.error);
+  } else {
+    toast.success(res.message);
+    resetForm();
+  }
 };
 
 const AddFilePage = () => {
@@ -107,6 +133,7 @@ const AddFilePage = () => {
     <div>
       <h2 className="text-xl font-bold mb-7">فرم ثبت آگهی</h2>
       <AddFileForm formik={formik} />
+      <Toaster />
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { Types } from "mongoose";
 import connectDB from "@/utils/connectDB";
 import RSUser from "@/models/RSUser";
 import { StatusCodes, StatusMessages } from "@/types/enums";

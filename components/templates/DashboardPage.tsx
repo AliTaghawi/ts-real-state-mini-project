@@ -1,11 +1,18 @@
 "use client";
 
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/stor";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/stor";
 import DashboardCard from "@/modules/DashboardPage/DashboardCard";
+import { useEffect } from "react";
+import { fetchUser } from "@/redux/features/user/userSlice";
 
 const DashboardPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((store: RootState) => store.user.user);
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+  
   return (
     <div>
       <h2 className="text-xl font-bold mb-7">آگهی‌های من</h2>

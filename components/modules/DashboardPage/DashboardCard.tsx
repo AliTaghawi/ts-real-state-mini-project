@@ -1,14 +1,16 @@
-import { MdLocationPin } from "react-icons/md";
+import { MdLocationPin, MdDeleteForever } from "react-icons/md";
 import { LuClipboardType } from "react-icons/lu";
 import { IoMdPricetag } from "react-icons/io";
 import { GrStatusUnknown } from "react-icons/gr";
+import { CiEdit } from "react-icons/ci";
 import { FrontFileType } from "@/models/RSFile";
 import { categoryIcons, categoryText, fileTypesText } from "@/utils/constants";
+import Link from "next/link";
 
 const itemsStyle = "flex gap-1 items-center";
 
 const DashboardCard = ({
-  file: { title, location, price, category, fileType, published },
+  file: { title, location, price, category, fileType, published, _id },
 }: {
   file: FrontFileType;
 }) => {
@@ -58,6 +60,17 @@ const DashboardCard = ({
             <span className="text-neutral-500">در انتظار تایید</span>
           )}
         </div>
+      </div>
+      <div className="flex justify-between items-center w-full mt-2">
+        <Link
+          href={`/dashboard/add-file/${_id}`}
+          className="flex items-center text-emerald-800 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 rounded-md transition ease-linear font-medium"
+        >
+          <CiEdit className="text-xl" /> تغییر
+        </Link>
+        <button className="flex items-center text-red-700 gap-0.5 px-1.5 border border-red-700 rounded-md hover:bg-red-50 transition ease-linear">
+          حذف <MdDeleteForever />
+        </button>
       </div>
     </div>
   );

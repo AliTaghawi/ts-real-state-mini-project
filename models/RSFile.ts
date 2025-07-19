@@ -1,6 +1,7 @@
 import { InferSchemaType, Schema, model, models } from "mongoose";
 
 interface RSFileTypes {
+  _id: Schema.Types.ObjectId;
   title: string;
   description: string;
   location: string;

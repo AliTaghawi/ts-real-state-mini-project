@@ -1,9 +1,8 @@
+import DashboardPage from "@/templates/DashboardPage";
 
 const Dashboard = () => {
   return (
-    <div>
-      Dashboard
-    </div>
+    <DashboardPage />
   );
 };
 

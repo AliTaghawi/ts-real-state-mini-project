@@ -61,7 +61,7 @@ interface RegisterType extends LoginType {
 
 interface FetchUserType {
   loading: boolean;
-  user: SafeUser | null;
+  user: SafeUser | null | any;
   error: string | undefined;
 }
 

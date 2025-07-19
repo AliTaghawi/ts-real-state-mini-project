@@ -1,12 +1,17 @@
+import { notFound } from "next/navigation";
+import { isValidObjectId } from "mongoose";
 import EditFilePage from "@/templates/EditFilePage";
-// import { notFound } from "next/navigation";
-// import { isValidObjectId } from "mongoose";
 // import connectDB from "@/utils/connectDB";
 // import { getServerSession } from "next-auth";
 // import RSFile from "@/models/RSFile";
 
-const EditFile = async ({ params }: { params: Promise<{ fileId: string }> }) => {
-  const {fileId} = await params
+const EditFile = async ({
+  params,
+}: {
+  params: Promise<{ fileId: string }>;
+}) => {
+  const { fileId } = await params;
+  if (!isValidObjectId(fileId)) notFound();
   // if (!isValidObjectId(fileId)) return notFound()
   // await connectDB()
   // const file = await RSFile.findOne({_id: fileId})

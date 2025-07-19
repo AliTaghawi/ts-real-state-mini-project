@@ -135,10 +135,15 @@ const EditFilePage = ({ id }: { id: string }) => {
     }
   }
 
+  const cancelHandler = () => {
+    formik.resetForm()
+    router.back()
+  }
+
   return (
     <div>
       <h2 className="text-xl font-bold mb-7">فرم ویرایش آگهی</h2>
-      <AddFileForm formik={formik} type="edit" />
+      <AddFileForm formik={formik} type="edit" cancelHandler={cancelHandler} />
       <Toaster />
     </div>
   );

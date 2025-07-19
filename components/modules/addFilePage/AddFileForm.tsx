@@ -4,12 +4,17 @@ import CustomDatePicker from "@/modules/addFilePage/CustomDatePicker";
 import FileTypeList from "@/modules/addFilePage/FileTypeList";
 import TextList from "@/modules/addFilePage/TextList";
 
+const buttonStyle =
+  "py-1 px-2 mb-12 mt-5 rounded-md border transition ease-linear";
+
 const AddFileForm = ({
   formik,
   type,
+  cancelHandler,
 }: {
   formik: any;
   type: "edit" | "add";
+  cancelHandler?: () => void;
 }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -159,13 +164,30 @@ const AddFileForm = ({
         formik={formik}
         field="rules"
       />
-      <button
-        type="submit"
-        className="py-1 mb-12 mt-5 w-full max-w-[390px] rounded-md border border-sky-500 bg-sky-200 hover:bg-sky-300 transition ease-linear"
-      >
-        {type === "edit" ? "ویرایش آگهی" : null}
-        {type === "add" ? "ثبت آگهی" : null}
-      </button>
+      {type === "add" ? (
+        <button
+          type="submit"
+          className={`${buttonStyle} border-sky-500 bg-sky-200 hover:bg-sky-300 w-full max-w-[390px]`}
+        >
+          ثبت آگهی
+        </button>
+      ) : (
+        <div className="flex justify-between w-full max-w-[470px]">
+          <button
+            type="submit"
+            className={`${buttonStyle} border-sky-500 bg-sky-200 hover:bg-sky-300`}
+          >
+            ویرایش آگهی
+          </button>
+          <button
+            type="button"
+            onClick={cancelHandler}
+            className={`${buttonStyle} border-neutral-500 bg-neutral-200 hover:bg-neutral-300`}
+          >
+            انصراف
+          </button>
+        </div>
+      )}
     </form>
   );
 };

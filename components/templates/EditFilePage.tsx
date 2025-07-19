@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast from "react-hot-toast";
 import { FrontFileType } from "@/models/RSFile";
 import AddFileForm from "@/modules/addFilePage/AddFileForm";
 
@@ -63,6 +65,7 @@ const EditFilePage = ({ id }: { id: string }) => {
   useEffect(() => {
     getFile();
   }, [id]);
+  const router = useRouter();
 
   async function getFile() {
     const result = await fetch(`/api/files/${id}`);
@@ -104,7 +107,32 @@ const EditFilePage = ({ id }: { id: string }) => {
     values: any,
     { resetForm }: { resetForm: () => void }
   ) {
-    console.log(values);
+    const price =
+      values.fileType === "rent"
+        ? { rent: +values.rent, mortgage: +values.mortgage }
+        : +values.price;
+    const payload = {
+      ...values,
+      areaMeter: +values.areaMeter,
+      price,
+    };
+    delete payload.rent;
+    delete payload.mortgage;
+    const result = await fetch(`/api/files/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json" },
+    });
+    const res = await result.json();
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      toast.success(res.message);
+      setTimeout(() => {
+        router.replace("/dashboard");
+      }, 1000);
+      resetForm();
+    }
   }
 
   return (

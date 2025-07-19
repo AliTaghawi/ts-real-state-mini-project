@@ -28,7 +28,9 @@ export async function GET(
     }
 
     const { fileId } = await params;
-    const file = await RSFile.findOne({ _id: fileId });
+    const file = await RSFile.findOne({ _id: fileId }).select(
+      "-userId -createdAt -updatedAt"
+    );
     if (!file) {
       return NextResponse.json(
         { error: StatusMessages.NOTFOUND_FILE },

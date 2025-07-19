@@ -18,7 +18,24 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const user = await RSUser.findOne({ email: session?.user?.email });
+    // const user = await RSUser.findOne({ email: session?.user?.email });
+
+    const [user] = await RSUser.aggregate([
+      { $match: { email: session.user?.email } },
+      {
+        $project: {
+          password: 0,
+        },
+      },
+      {
+        $lookup: {
+          from: "rsfiles",
+          foreignField: "userId",
+          localField: "_id",
+          as: "files",
+        },
+      },
+    ]);
     if (!user) {
       return NextResponse.json(
         { error: StatusMessages.NOTFOUND_USER },

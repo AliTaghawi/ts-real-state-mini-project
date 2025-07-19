@@ -1,3 +1,6 @@
+import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { MdLocationPin, MdDeleteForever } from "react-icons/md";
 import { LuClipboardType } from "react-icons/lu";
 import { IoMdPricetag } from "react-icons/io";
@@ -5,7 +8,8 @@ import { GrStatusUnknown } from "react-icons/gr";
 import { CiEdit } from "react-icons/ci";
 import { FrontFileType } from "@/models/RSFile";
 import { categoryIcons, categoryText, fileTypesText } from "@/utils/constants";
-import Link from "next/link";
+import { AppDispatch } from "@/redux/stor";
+import { fetchUser } from "@/redux/features/user/userSlice";
 
 const itemsStyle = "flex gap-1 items-center";
 
@@ -14,6 +18,18 @@ const DashboardCard = ({
 }: {
   file: FrontFileType;
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const deleteHandler = async () => {
+    const result = await fetch(`/api/files/${_id}`, { method: "DELETE" });
+    const res = await result.json();
+    if (res.error) {
+      toast.error(res.error);
+    } else {
+      dispatch(fetchUser());
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2 items-start p-4 border border-sky-400 rounded-xl shadow-md max-w-[450px] w-full mx-auto sm:mx-0">
       <h4 className="text-sm font-bold ms-1">{title}</h4>
@@ -68,10 +84,14 @@ const DashboardCard = ({
         >
           <CiEdit className="text-xl" /> تغییر
         </Link>
-        <button className="flex items-center text-red-700 gap-0.5 px-1.5 border border-red-700 rounded-md hover:bg-red-50 transition ease-linear">
+        <button
+          onClick={deleteHandler}
+          className="flex items-center text-red-700 gap-0.5 px-1.5 border border-red-700 rounded-md hover:bg-red-50 transition ease-linear"
+        >
           حذف <MdDeleteForever />
         </button>
       </div>
+      <Toaster />
     </div>
   );
 };

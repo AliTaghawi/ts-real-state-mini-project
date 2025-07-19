@@ -64,7 +64,7 @@ const DashboardCard = ({
       <div className="flex justify-between items-center w-full mt-2">
         <Link
           href={`/dashboard/add-file/${_id}`}
-          className="flex items-center text-emerald-800 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 rounded-md transition ease-linear font-medium"
+          className="flex items-center text-emerald-700 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 rounded-md transition ease-linear font-medium"
         >
           <CiEdit className="text-xl" /> تغییر
         </Link>

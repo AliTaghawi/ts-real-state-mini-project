@@ -2,34 +2,10 @@ import { MdLocationPin } from "react-icons/md";
 import { LuClipboardType } from "react-icons/lu";
 import { IoMdPricetag } from "react-icons/io";
 import { GrStatusUnknown } from "react-icons/gr";
-import { IoHome, IoStorefront } from "react-icons/io5";
-import { PiBuildingApartmentFill, PiOfficeChairFill } from "react-icons/pi";
-import { BiSolidLandscape } from "react-icons/bi";
 import { FrontFileType } from "@/models/RSFile";
+import { categoryIcons, categoryText, fileTypesText } from "@/utils/constants";
 
 const itemsStyle = "flex gap-1 items-center";
-
-const fileTypesText = {
-  rent: "اجاره",
-  mortgage: "رهن کامل",
-  buy: "فروش",
-};
-
-const categoryText = {
-  villa: "ویلایی",
-  apartment: "آپارتمان",
-  store: "مغازه",
-  office: "دفتر",
-  land: "زمین",
-};
-
-const categoryIcons = {
-  villa: <IoHome className="text-lg text-sky-400" />,
-  apartment: <PiBuildingApartmentFill className="text-lg text-sky-400" />,
-  store: <IoStorefront className="text-lg text-sky-400" />,
-  office: <PiOfficeChairFill className="text-xl text-sky-400" />,
-  land: <BiSolidLandscape className="text-xl text-sky-400" />,
-};
 
 const DashboardCard = ({
   file: { title, location, price, category, fileType, published },

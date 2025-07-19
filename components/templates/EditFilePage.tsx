@@ -110,7 +110,7 @@ const EditFilePage = ({ id }: { id: string }) => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-7">فرم ویرایش آگهی</h2>
-      <AddFileForm formik={formik} />
+      <AddFileForm formik={formik} type="edit" />
     </div>
   );
 };

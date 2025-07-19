@@ -4,7 +4,13 @@ import CustomDatePicker from "@/modules/addFilePage/CustomDatePicker";
 import FileTypeList from "@/modules/addFilePage/FileTypeList";
 import TextList from "@/modules/addFilePage/TextList";
 
-const AddFileForm = ({ formik }: { formik: any }) => {
+const AddFileForm = ({
+  formik,
+  type,
+}: {
+  formik: any;
+  type: "edit" | "add";
+}) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <TextInput
@@ -141,13 +147,24 @@ const AddFileForm = ({ formik }: { formik: any }) => {
       )}
       <CategoryList formik={formik} />
       <CustomDatePicker formik={formik} />
-      <TextList title="امکانات رفاهی:" value={formik.values.amenities} formik={formik} field="amenities" />
-      <TextList title="قوانین:" value={formik.values.rules} formik={formik} field="rules" />
+      <TextList
+        title="امکانات رفاهی:"
+        value={formik.values.amenities}
+        formik={formik}
+        field="amenities"
+      />
+      <TextList
+        title="قوانین:"
+        value={formik.values.rules}
+        formik={formik}
+        field="rules"
+      />
       <button
         type="submit"
         className="py-1 mb-12 mt-5 w-full max-w-[390px] rounded-md border border-sky-500 bg-sky-200 hover:bg-sky-300 transition ease-linear"
       >
-        ثبت آگهی
+        {type === "edit" ? "ویرایش آگهی" : null}
+        {type === "add" ? "ثبت آگهی" : null}
       </button>
     </form>
   );

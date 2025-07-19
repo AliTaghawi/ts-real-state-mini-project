@@ -132,7 +132,7 @@ const AddFilePage = () => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-7">فرم ثبت آگهی</h2>
-      <AddFileForm formik={formik} />
+      <AddFileForm formik={formik} type="add" />
       <Toaster />
     </div>
   );

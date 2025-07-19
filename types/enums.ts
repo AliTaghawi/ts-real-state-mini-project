@@ -2,6 +2,7 @@ enum StatusMessages {
   USER_CREATED = "کاربر با موفقیت ایجاد شد",
   USER_UPDATED = "کاربر با موفقیت تغییر یافت",
   FILE_CREATED = "آگهی با موفقیت ثبت شد",
+  FILE_UPDATED = "آگهی با موفقیت ویرایش شد",
   USER_DELETED = "کاربر با موفقیت حذف شد",
   PASSWORD_UPDATED = "رمز عبور با موفقیت به روزرسانی شد",
   EXISTED_USER = "این حساب کاربری قبلا ایجاد شده!",

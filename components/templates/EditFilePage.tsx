@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { FrontFileType } from "@/models/RSFile";
 import AddFileForm from "@/modules/addFilePage/AddFileForm";
 
@@ -62,10 +62,10 @@ const validationSchema = Yup.object({
 
 const EditFilePage = ({ id }: { id: string }) => {
   const [file, setFile] = useState<FrontFileType>();
+  const router = useRouter();
   useEffect(() => {
     getFile();
   }, [id]);
-  const router = useRouter();
 
   async function getFile() {
     const result = await fetch(`/api/files/${id}`);
@@ -139,6 +139,7 @@ const EditFilePage = ({ id }: { id: string }) => {
     <div>
       <h2 className="text-xl font-bold mb-7">فرم ویرایش آگهی</h2>
       <AddFileForm formik={formik} type="edit" />
+      <Toaster />
     </div>
   );
 };

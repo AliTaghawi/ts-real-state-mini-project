@@ -16,6 +16,8 @@ interface RSFileTypes {
   rules: string[];
   userId: Schema.Types.ObjectId;
   published: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 const fileSchema = new Schema<RSFileTypes>(
@@ -91,7 +93,5 @@ const RSFile = models.RSFile || model("RSFile", fileSchema);
 
 export default RSFile;
 export type FileType = InferSchemaType<typeof fileSchema>;
-export type FrontFileType = Omit<
-  FileType,
-  "createdAt" | "updatedAt" | "userId" | "published"
->;
+export type FrontFileType = Partial<Pick<FileType, "userId">> &
+  Omit<FileType, "userId">;

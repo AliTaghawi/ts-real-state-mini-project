@@ -48,18 +48,18 @@ const DashboardCard = ({
       <div className={`${itemsStyle} items-start text-sm`}>
         <IoMdPricetag className="text-lg text-sky-400" />
         {typeof price === "number" ? (
-          <span>{price} تومان</span>
+          <span className="text-neutral-700">{price} تومان</span>
         ) : (
-          <div className="flex items-center flex-wrap gap-2">
+          <div className="flex flex-col items-start gap-2">
             <div>
               <span className="font-bold me-1.5">رهن:</span>
-              <span className="text-xs text-neutral-700">
+              <span className=" text-neutral-700">
                 {price.mortgage} تومان
               </span>
             </div>
             <div>
               <span className="font-bold me-1.5">اجاره:</span>
-              <span className="text-xs text-neutral-700">
+              <span className=" text-neutral-700">
                 {price.rent} تومان
               </span>
             </div>
@@ -77,10 +77,10 @@ const DashboardCard = ({
           )}
         </div>
       </div>
-      <div className="flex justify-between items-center w-full mt-2">
+      <div className="flex justify-between items-center w-full mt-auto">
         <Link
           href={`/dashboard/add-file/${_id}`}
-          className="flex items-center text-emerald-700 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 rounded-md transition ease-linear font-medium"
+          className="flex items-center text-emerald-700 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 rounded-md transition ease-linear font-medium mt-2"
         >
           <CiEdit className="text-xl" /> تغییر
         </Link>

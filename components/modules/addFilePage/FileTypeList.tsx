@@ -35,7 +35,7 @@ const FileTypeList = ({ formik }: { formik: any }) => {
           onBlur={formik.handleBlur}
         />
         <RadioInput
-          title="خرید"
+          title="فروش"
           value="buy"
           name="fileType"
           checked={formik.values.fileType === "buy"}

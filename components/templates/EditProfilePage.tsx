@@ -152,14 +152,14 @@ const EditProfilePage = () => {
         <div className="flex items-center justify-between mb-8">
           <button
             type="submit"
-            className="bg-emerald-500 hover:bg-emerald-500/80 text-white dark:text-emerald-500 dark:bg-emerald-950 dark:hover:bg-emerald-900 py-0.5 px-2.5 rounded-md transition ease-linear"
+            className="bg-emerald-500 hover:bg-emerald-500/80 text-white dark:border dark:border-emerald-400 dark:text-emerald-400 dark:bg-emerald-950 dark:hover:bg-emerald-900 py-0.5 px-2.5 rounded-md transition ease-linear"
           >
             ثبت تغییرات
           </button>
           <button
             type="button"
             onClick={() => router.replace("/dashboard/profile")}
-            className="bg-neutral-300 hover:bg-neutral-300/80 border border-neutral-400/70 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700 py-0.5 px-2.5 rounded-md transition ease-linear"
+            className="bg-neutral-300 hover:bg-neutral-300/80 border border-neutral-400/70 dark:border-neutral-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 py-0.5 px-2.5 rounded-md transition ease-linear"
           >
             انصراف
           </button>

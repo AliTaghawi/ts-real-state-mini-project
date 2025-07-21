@@ -80,7 +80,7 @@ const DeletePopup = () => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-red-400 hover:bg-red-400/85 dark:bg-red-950 dark:hover:bg-red-900/80 py-0.5 px-1.5 text-white dark:text-red-300 rounded-md flex items-center"
+            className="bg-red-400 hover:bg-red-400/85 dark:border dark:border-red-300 dark:bg-red-950 dark:hover:bg-red-900/80 py-0.5 px-1.5 text-white dark:text-red-300 rounded-md flex items-center"
           >
             <MdDeleteForever className="text-xl" />
             حذف حساب کاربری
@@ -88,7 +88,7 @@ const DeletePopup = () => {
           <button
             type="button"
             onClick={cancelHandler}
-            className="bg-emerald-500 hover:bg-emerald-500/85 dark:text-emerald-500 dark:bg-emerald-950 dark:hover:bg-emerald-900 py-0.5 px-2.5 text-white rounded-md"
+            className="bg-emerald-500 hover:bg-emerald-500/85 dark:border dark:border-emerald-400 dark:text-emerald-400 dark:bg-emerald-950 dark:hover:bg-emerald-900 py-0.5 px-2.5 text-white rounded-md"
           >
             انصراف
           </button>

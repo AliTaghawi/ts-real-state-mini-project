@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { TextInputProps } from "@/types/types";
 
 const TextInput = ({
@@ -14,6 +16,7 @@ const TextInput = ({
   divClass,
   dir,
 }: TextInputProps) => {
+  const [show, setShow] = useState<boolean>(false);
   return (
     <div
       className={`flex flex-col gap-1 mt-2 mb-7 relative ${
@@ -40,12 +43,12 @@ const TextInput = ({
       ) : (
         <input
           dir={dir}
-          className={`py-1 px-2 border ${
+          className={`py-1 px-2 ${type === "password" ? "pr-8" : ""} border ${
             blur && error
               ? "border-red-400 outline-red-400 dark:outline-red-700"
               : "border-sky-400 outline-sky-400 dark:border-sky-800 dark:outline-sky-800 "
           } rounded-md ${dir === "rtl" ? "text-right" : "text-left"}`}
-          type={type}
+          type={type === "password" ? (show ? "text" : "password") : type}
           placeholder={placeholder ?? ""}
           name={name}
           value={value}
@@ -58,6 +61,15 @@ const TextInput = ({
           {error}
         </span>
       )}
+      {type === "password" ? (
+        <button
+          type="button"
+          className="w-fit inline-block absolute right-2 bottom-2"
+          onClick={() => setShow(!show)}
+        >
+          {show ? <FaRegEye /> : <FaRegEyeSlash />}
+        </button>
+      ) : null}
     </div>
   );
 };

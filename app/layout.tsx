@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ChildrenType) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" className="dark:bg-gray-950 dark:text-neutral-300">
       <body className={Vazirmatn.className}>
         <NextAuthProvider>
           <ReduxProvider>

@@ -21,20 +21,26 @@ const LoginProfile = () => {
   return (
     <div>
       {session.status === "authenticated" ? (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-0.5">
           {user?.role === "ADMIN" ? (
-            <Link href="/Admin" className="text-3xl">
+            <Link
+              href="/Admin"
+              className="text-3xl hover:bg-sky-200 dark:hover:bg-sky-800/50 p-0.5 rounded-sm transition ease-linear"
+            >
               <MdAdminPanelSettings />
             </Link>
           ) : null}
-          <Link href="/dashboard" className="text-2xl">
+          <Link
+            href="/dashboard"
+            className="text-2xl hover:bg-sky-200 dark:hover:bg-sky-800/50 p-1.5 rounded-sm transition ease-linear"
+          >
             <FaRegUserCircle />
           </Link>
         </div>
       ) : (
         <Link
           href="/login"
-          className="flex items-center gap-0.5 px-2 py-0.5 hover:bg-sky-200 rounded-sm transition-all ease-linear"
+          className="flex items-center gap-0.5 px-2 py-0.5 hover:bg-sky-200 dark:hover:bg-sky-800/50 rounded-sm transition-all ease-linear"
         >
           <TbLogin2 className="text-xl" />
           Login

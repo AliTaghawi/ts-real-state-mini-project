@@ -62,7 +62,7 @@ const DeletePopup = () => {
       <form
         // ref={ref}
         onSubmit={formik.handleSubmit}
-        className="bg-white p-4 border-2 border-red-400 rounded-xl block w-fit mt-[150px] mx-auto"
+        className="bg-white dark:bg-gray-950 p-4 border-2 border-red-400 dark:border-red-900 rounded-xl block w-fit mt-[150px] mx-auto"
       >
         <p>از رفتن شما بسیار متاسفیم. </p>
         <p>اگر از حذف حساب کاربری خود مطمئنید، رمز عبور خود را وارد کنید.</p>
@@ -80,7 +80,7 @@ const DeletePopup = () => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-red-400 hover:bg-red-400/85 py-0.5 px-1.5 text-white rounded-md flex items-center"
+            className="bg-red-400 hover:bg-red-400/85 dark:bg-red-950 dark:hover:bg-red-900/80 py-0.5 px-1.5 text-white dark:text-red-300 rounded-md flex items-center"
           >
             <MdDeleteForever className="text-xl" />
             حذف حساب کاربری
@@ -88,7 +88,7 @@ const DeletePopup = () => {
           <button
             type="button"
             onClick={cancelHandler}
-            className="bg-emerald-500 hover:bg-emerald-500/85 py-0.5 px-2.5 text-white rounded-md"
+            className="bg-emerald-500 hover:bg-emerald-500/85 dark:text-emerald-500 dark:bg-emerald-950 dark:hover:bg-emerald-900 py-0.5 px-2.5 text-white rounded-md"
           >
             انصراف
           </button>

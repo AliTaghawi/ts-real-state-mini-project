@@ -17,9 +17,9 @@ export const categoryText = {
 };
 
 export const categoryIcons = {
-  villa: <IoHome className="text-lg text-sky-400" />,
-  apartment: <PiBuildingApartmentFill className="text-lg text-sky-400" />,
-  store: <IoStorefront className="text-lg text-sky-400" />,
-  office: <PiOfficeChairFill className="text-xl text-sky-400" />,
-  land: <BiSolidLandscape className="text-xl text-sky-400" />,
+  villa: <IoHome className="text-lg text-sky-400 dark:text-sky-500" />,
+  apartment: <PiBuildingApartmentFill className="text-lg text-sky-400 dark:text-sky-500" />,
+  store: <IoStorefront className="text-lg text-sky-400 dark:text-sky-500" />,
+  office: <PiOfficeChairFill className="text-xl text-sky-400 dark:text-sky-500" />,
+  land: <BiSolidLandscape className="text-xl text-sky-400 dark:text-sky-500" />,
 };

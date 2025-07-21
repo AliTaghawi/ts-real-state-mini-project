@@ -23,7 +23,7 @@ const DashboardLayout = ({ children }: ChildrenType) => {
 
   return (
     <div className="flex flex-col sm:flex-row items-start gap-8">
-      <aside className="py-1.5 px-2.5 border-2 border-sky-400 rounded-lg w-full sm:w-[200px] flex sm:flex-col items-center gap-4 xs:gap-2.5 ">
+      <aside className="py-1.5 px-2.5 border-2 border-sky-400 dark:border-sky-800 rounded-lg w-full sm:w-[200px] flex sm:flex-col items-center gap-4 xs:gap-2.5 ">
         <div className="flex items-center gap-2 sm:flex-col">
           <div className="flex flex-col items-center">
             <CgProfile className="sm:text-5xl text-lg sm:mt-4" />
@@ -52,7 +52,7 @@ const DashboardLayout = ({ children }: ChildrenType) => {
         />
         <button
           onClick={() => signOut()}
-          className="flex items-center gap-1 text-red-700 text-xs sm:text-lg sm:mb-5 mr-auto sm:mr-0 px-1.5 py-0.5 rounded-md hover:bg-red-50 transition ease-linear"
+          className="flex items-center gap-1 text-red-700 text-xs sm:text-lg sm:mb-5 mr-auto sm:mr-0 px-1.5 py-0.5 rounded-md hover:bg-red-50 dark:hover:bg-red-400/20 transition ease-linear"
         >
           <TbLogout className="text-xl" />
           <span className="hidden sm:inline-block">خروج</span>

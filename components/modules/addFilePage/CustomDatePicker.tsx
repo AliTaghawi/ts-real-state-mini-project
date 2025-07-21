@@ -7,7 +7,7 @@ const CustomDatePicker = ({ formik }: { formik: any }) => {
     <div className=" mt-2 mb-7 relative w-fit">
       <p>تاریخ ساخت:</p>
       <DatePicker
-        inputClass="py-1 px-2 border border-sky-400 outline-sky-400 rounded-md mt-1"
+        inputClass="py-1 px-2 border border-sky-400 outline-sky-400 rounded-md mt-1 dark:border-sky-800 dark:outline-sky-800"
         calendar={persian}
         locale={persian_fa}
         calendarPosition="bottom-right"
@@ -22,7 +22,7 @@ const CustomDatePicker = ({ formik }: { formik: any }) => {
         }}
       />
       {formik.errors.constructionDate && (
-        <span className="absolute -bottom-6 right-0 text-xs bg-red-200 w-full rounded-sm py-0.5 px-2.5 text-red-800">
+        <span className="absolute -bottom-6 right-0 text-xs bg-red-200 dark:bg-red-400/20 w-full rounded-sm py-0.5 px-2.5 text-red-800 dark:text-red-400">
           {formik.errors.constructionDate}
         </span>
       )}

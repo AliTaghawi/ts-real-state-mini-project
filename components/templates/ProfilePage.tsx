@@ -10,7 +10,7 @@ import Link from "next/link";
 import DeletePopup from "@/modules/profilePage/DeletePopup";
 import { toggleDeletePopup } from "@/redux/features/displays/displaysSlice";
 
-const linkStyle ="flex items-center text-emerald-800 hover:bg-sky-100 rounded-sm py-0.5 px-1 transition ease-linear";
+const linkStyle ="flex items-center text-emerald-800 dark:text-emerald-500 dark:hover:bg-sky-950 hover:bg-sky-100 rounded-sm py-0.5 px-1 transition ease-linear";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const ProfilePage = () => {
     <>
       <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
         <p>سلام {user?.fullName || user?.showName} جان 👋</p>
-        <div className="flex gap-2 bg-sky-100 py-0.5 px-1 rounded-sm">
+        <div className="flex gap-2 bg-sky-100 dark:bg-sky-900 py-0.5 px-1 rounded-sm">
           <p>تاریخ عضویت:</p>
           <span>
             {user?.createdAt &&
@@ -71,7 +71,7 @@ const ProfilePage = () => {
         </div>
         <button
           onClick={() => dispatch(toggleDeletePopup())}
-          className="flex items-center py-0.5 px-1.5 border-2 border-red-700 text-red-700 hover:bg-red-50 rounded-md mr-auto text-sm transition ease-linear"
+          className="flex items-center py-0.5 px-1.5 border-2 border-red-700 text-red-700 hover:bg-red-50 dark:hover:bg-red-400/20 rounded-md mr-auto text-sm transition ease-linear"
         >
           <MdDeleteForever className="text-xl" />
           حذف حساب کاربری

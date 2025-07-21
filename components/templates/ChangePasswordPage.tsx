@@ -91,14 +91,14 @@ const ChangePasswordPage = () => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-emerald-500 text-white py-0.5 px-2.5 rounded-md hover:bg-emerald-500/80 transition ease-linear"
+            className="bg-emerald-500 text-white py-0.5 px-2.5 rounded-md hover:bg-emerald-500/80 dark:text-emerald-500 dark:bg-emerald-950 dark:hover:bg-emerald-900 transition ease-linear"
           >
             تغییر رمز عبور
           </button>
           <button
             type="button"
             onClick={() => router.replace("/dashboard/profile")}
-            className="bg-neutral-300 text-neutral-800 border border-neutral-400/70 py-0.5 px-2.5 rounded-md hover:bg-neutral-300/80 transition ease-linear"
+            className="bg-neutral-300 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300 border border-neutral-400/70 dark:border-neutral-700 py-0.5 px-2.5 rounded-md hover:bg-neutral-300/80  dark:hover:bg-neutral-700 transition ease-linear"
           >
             انصراف
           </button>

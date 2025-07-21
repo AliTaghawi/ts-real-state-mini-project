@@ -31,10 +31,10 @@ const DashboardCard = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 items-start p-4 border border-sky-400 rounded-xl shadow-md max-w-[450px] w-full mx-auto sm:mx-0">
+    <div className="flex flex-col gap-2 items-start p-4 border border-sky-400 dark:border-sky-800 rounded-xl shadow-md max-w-[450px] w-full mx-auto sm:mx-0">
       <h4 className="text-sm font-bold ms-1">{title}</h4>
       <div className={itemsStyle}>
-        <MdLocationPin className="text-xl text-sky-400" />
+        <MdLocationPin className="text-xl text-sky-400 dark:text-sky-500" />
         <span>{location}</span>
       </div>
       <div className={itemsStyle}>
@@ -42,24 +42,24 @@ const DashboardCard = ({
         <span>{categoryText[category]}</span>
       </div>
       <div className={itemsStyle}>
-        <LuClipboardType className="text-lg text-sky-400" />
+        <LuClipboardType className="text-lg text-sky-400 dark:text-sky-500" />
         <span>{fileTypesText[fileType]}</span>
       </div>
       <div className={`${itemsStyle} items-start text-sm`}>
-        <IoMdPricetag className="text-lg text-sky-400" />
+        <IoMdPricetag className="text-lg text-sky-400 dark:text-sky-500" />
         {typeof price === "number" ? (
-          <span className="text-neutral-700">{price} تومان</span>
+          <span className="text-neutral-700 dark:text-neutral-400">{price} تومان</span>
         ) : (
           <div className="flex flex-col items-start gap-2">
             <div>
               <span className="font-bold me-1.5">رهن:</span>
-              <span className=" text-neutral-700">
+              <span className=" text-neutral-700 dark:text-neutral-400">
                 {price.mortgage} تومان
               </span>
             </div>
             <div>
               <span className="font-bold me-1.5">اجاره:</span>
-              <span className=" text-neutral-700">
+              <span className=" text-neutral-700 dark:text-neutral-400">
                 {price.rent} تومان
               </span>
             </div>
@@ -67,26 +67,26 @@ const DashboardCard = ({
         )}
       </div>
       <div className={`${itemsStyle} text-sm font-semibold`}>
-        <GrStatusUnknown className="text-lg text-sky-400" />
+        <GrStatusUnknown className="text-lg text-sky-400 dark:text-sky-500" />
         <div>
           <span className="me-1.5">وضعیت آگهی:</span>
           {published ? (
             <span className="text-emerald-500">تایید شده</span>
           ) : (
-            <span className="text-neutral-500">در انتظار تایید</span>
+            <span className="text-neutral-500 dark:text-neutral-400">در انتظار تایید</span>
           )}
         </div>
       </div>
       <div className="flex justify-between items-center w-full mt-auto">
         <Link
           href={`/dashboard/add-file/${_id}`}
-          className="flex items-center text-emerald-700 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 rounded-md transition ease-linear font-medium mt-2"
+          className="flex items-center text-emerald-700 dark:text-emerald-500 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 dark:hover:bg-sky-950 rounded-md transition ease-linear font-medium mt-2"
         >
           <CiEdit className="text-xl" /> تغییر
         </Link>
         <button
           onClick={deleteHandler}
-          className="flex items-center text-red-700 gap-0.5 px-1.5 border border-red-700 rounded-md hover:bg-red-50 transition ease-linear"
+          className="flex items-center text-red-700 gap-0.5 px-1.5 border border-red-700 rounded-md hover:bg-red-50 dark:hover:bg-red-400/20 transition ease-linear"
         >
           حذف <MdDeleteForever />
         </button>

@@ -167,7 +167,7 @@ const AddFileForm = ({
       {type === "add" ? (
         <button
           type="submit"
-          className={`${buttonStyle} border-sky-500 bg-sky-200 hover:bg-sky-300 w-full max-w-[390px]`}
+          className={`${buttonStyle} border-sky-500 bg-sky-200 hover:bg-sky-300 w-full max-w-[390px] dark:border-sky-500 dark:bg-sky-900 dark:hover:bg-sky-800`}
         >
           ثبت آگهی
         </button>
@@ -175,14 +175,14 @@ const AddFileForm = ({
         <div className="flex justify-between w-full max-w-[470px]">
           <button
             type="submit"
-            className={`${buttonStyle} border-sky-500 bg-sky-200 hover:bg-sky-300`}
+            className={`${buttonStyle} border-sky-500 bg-sky-200 hover:bg-sky-300 dark:border-sky-500 dark:bg-sky-900 dark:hover:bg-sky-800`}
           >
             ویرایش آگهی
           </button>
           <button
             type="button"
             onClick={cancelHandler}
-            className={`${buttonStyle} border-neutral-500 bg-neutral-200 hover:bg-neutral-300`}
+            className={`${buttonStyle} border-neutral-500 bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700`}
           >
             انصراف
           </button>

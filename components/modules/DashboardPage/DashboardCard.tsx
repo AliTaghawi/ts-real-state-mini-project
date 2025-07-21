@@ -10,6 +10,7 @@ import { FrontFileType } from "@/models/RSFile";
 import { categoryIcons, categoryText, fileTypesText } from "@/utils/constants";
 import { AppDispatch } from "@/redux/stor";
 import { fetchUser } from "@/redux/features/user/userSlice";
+import { e2p, sp } from "@/utils/replaceNumber";
 
 const itemsStyle = "flex gap-1 items-center";
 
@@ -32,10 +33,10 @@ const DashboardCard = ({
 
   return (
     <div className="flex flex-col gap-2 items-start p-4 border border-sky-400 dark:border-sky-800 rounded-xl shadow-md max-w-[450px] w-full mx-auto sm:mx-0">
-      <h4 className="text-sm font-bold ms-1">{title}</h4>
+      <h4 className="text-sm font-bold ms-1">{e2p(title)}</h4>
       <div className={itemsStyle}>
         <MdLocationPin className="text-xl text-sky-400 dark:text-sky-500" />
-        <span>{location}</span>
+        <span>{e2p(location)}</span>
       </div>
       <div className={itemsStyle}>
         {categoryIcons[category]}
@@ -48,19 +49,21 @@ const DashboardCard = ({
       <div className={`${itemsStyle} items-start text-sm`}>
         <IoMdPricetag className="text-lg text-sky-400 dark:text-sky-500" />
         {typeof price === "number" ? (
-          <span className="text-neutral-700 dark:text-neutral-400">{price} تومان</span>
+          <span className="text-neutral-700 dark:text-neutral-400">
+            {sp(price)} تومان
+          </span>
         ) : (
           <div className="flex flex-col items-start gap-2">
             <div>
               <span className="font-bold me-1.5">رهن:</span>
               <span className=" text-neutral-700 dark:text-neutral-400">
-                {price.mortgage} تومان
+                {sp(price.mortgage)} تومان
               </span>
             </div>
             <div>
               <span className="font-bold me-1.5">اجاره:</span>
               <span className=" text-neutral-700 dark:text-neutral-400">
-                {price.rent} تومان
+                {sp(price.rent)} تومان
               </span>
             </div>
           </div>
@@ -73,7 +76,9 @@ const DashboardCard = ({
           {published ? (
             <span className="text-emerald-500">تایید شده</span>
           ) : (
-            <span className="text-neutral-500 dark:text-neutral-400">در انتظار تایید</span>
+            <span className="text-neutral-500 dark:text-neutral-400">
+              در انتظار تایید
+            </span>
           )}
         </div>
       </div>

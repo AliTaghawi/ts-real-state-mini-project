@@ -1,4 +1,5 @@
 import { DetailsItemType } from "@/types/types";
+import { e2p } from "@/utils/replaceNumber";
 
 const DetailsItem = ({ title, property, bioType }: DetailsItemType) => {
   return (
@@ -15,7 +16,7 @@ const DetailsItem = ({ title, property, bioType }: DetailsItemType) => {
           bioType && "min-h-24 py-2 px-2.5 whitespace-pre-line"
         }`}
       >
-        {property || (
+        {e2p(property ?? "") || (
           <span className="text-neutral-500">هنوز این قسمت را کامل نکردید</span>
         )}
       </p>

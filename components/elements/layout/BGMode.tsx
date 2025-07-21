@@ -1,28 +1,24 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { MdComputer } from "react-icons/md";
-import { changeTheme, loadMode, setTheme } from "@/utils/checkTheme";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 const modeStyle =
   "flex items-center gap-2 hover:bg-sky-200 dark:hover:bg-sky-800/50 rounded-sm p-1 w-full transition ease-in";
 
 const BGMode = () => {
-  const [mode, setMode] = useState("");
+  const [muted, setMuted] = useState(false);
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
-    setMode(loadMode());
+    setMuted(true);
   }, []);
-
-  useEffect(() => {
-    changeTheme(mode);
-    setTheme();
-  }, [mode]);
 
   useOutsideClick(ref, () => {
     setShow(false);
@@ -33,9 +29,11 @@ const BGMode = () => {
   };
 
   const modeHandler = (mode: string) => {
-    setMode(mode);
+    setTheme(mode);
     setShow(false);
   };
+
+  if (!muted) return <MdComputer className="text-2xl" />;
 
   return (
     <div className=" relative flex p-1">
@@ -43,9 +41,9 @@ const BGMode = () => {
         onClick={showHandler}
         className="text-2xl hover:bg-sky-200 dark:hover:bg-sky-900 p-1 rounded-md"
       >
-        {mode === "light" && <MdLightMode />}
-        {mode === "dark" && <MdDarkMode />}
-        {mode === "system" && <MdComputer />}
+        {resolvedTheme === "light" && <MdLightMode />}
+        {resolvedTheme === "dark" && <MdDarkMode />}
+        {resolvedTheme === "system" && <MdComputer />}
       </button>
       <div
         ref={ref}

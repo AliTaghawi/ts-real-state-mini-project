@@ -5,6 +5,7 @@ import { ChildrenType } from "@/types/types";
 import Layout from "@/layout/Layout";
 import ReduxProvider from "@/providers/ReduxProvider";
 import NextAuthProvider from "@/providers/NextAuthProvider";
+import ModeProvider from "@/providers/ModeProvider";
 
 export const metadata: Metadata = {
   title: "Real state",
@@ -14,11 +15,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ChildrenType) {
   return (
-    <html lang="fa" dir="rtl" className="dark:bg-gray-950 dark:text-neutral-200">
+    <html
+      lang="fa"
+      dir="rtl"
+      className="dark:bg-gray-950 dark:text-neutral-200"
+      suppressHydrationWarning={true}
+    >
       <body className={Vazirmatn.className}>
         <NextAuthProvider>
           <ReduxProvider>
-            <Layout>{children}</Layout>
+            <ModeProvider>
+              <Layout>{children}</Layout>
+            </ModeProvider>
           </ReduxProvider>
         </NextAuthProvider>
       </body>

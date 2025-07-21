@@ -24,7 +24,7 @@ const setTheme = () => {
   // return theme;
 };
 
-const changeTheme = (theme: "system" | "dark" | "light") => {
+const changeTheme = (theme: string) => {
   if (theme === "system") {
     localStorage.removeItem("theme")
   } else {

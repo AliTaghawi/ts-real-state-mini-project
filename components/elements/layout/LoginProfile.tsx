@@ -19,9 +19,9 @@ const LoginProfile = () => {
   }, [session.status]);
 
   return (
-    <div>
+    <>
       {session.status === "authenticated" ? (
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center">
           {user?.role === "ADMIN" ? (
             <Link
               href="/Admin"
@@ -46,7 +46,7 @@ const LoginProfile = () => {
           Login
         </Link>
       )}
-    </div>
+    </>
   );
 };
 

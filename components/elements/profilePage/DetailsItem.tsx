@@ -11,10 +11,10 @@ const DetailsItem = ({ title, property, bioType }: DetailsItemType) => {
         {title}:
       </label>
       <p
-        className={`text-neutral-800 bg-neutral-100 border border-neutral-200 dark:text-neutral-400 dark:bg-neutral-800 dark:border-neutral-500 py-0.5 px-1.5 rounded-sm ${
-          bioType && "min-h-24 whitespace-pre-line"
+        className={`text-neutral-800 bg-neutral-100 border border-neutral-200 dark:text-neutral-300 dark:bg-neutral-800 dark:border-neutral-500 py-0.5 px-1.5 rounded-sm ${
+          bioType && "min-h-24 py-2 px-2.5 whitespace-pre-line"
         }`}
-      >ب
+      >
         {property || (
           <span className="text-neutral-500">هنوز این قسمت را کامل نکردید</span>
         )}

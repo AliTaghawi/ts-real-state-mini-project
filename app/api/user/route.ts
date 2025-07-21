@@ -101,10 +101,14 @@ export async function PATCH(req: NextRequest) {
     //   );
     // }
 
-    fullName ? (user.fullName = fullName) : null;
-    showName ? (user.showName = showName) : null;
-    phone ? (user.phone = phone) : null;
-    bio ? (user.bio = bio) : null;
+    // fullName ? (user.fullName = fullName) : null;
+    // showName ? (user.showName = showName) : null;
+    // phone ? (user.phone = phone) : null;
+    // bio ? (user.bio = bio) : null;
+    user.fullName = fullName
+    user.showName = showName
+    user.phone = phone
+    user.bio = bio
     user.showSocials.email = showSocials.email;
     user.showSocials.phone = showSocials.phone;
     await user.save();

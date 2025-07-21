@@ -18,7 +18,7 @@ const registerSchema = loginSchema.append({
 });
 
 const userSchema = Joi.object({
-  fullName: Joi.string().optional(),
+  fullName: Joi.string().allow("").optional(),
   showName: Joi.string().min(3).required().messages({
     "string.empty": "لطفا اسم حساب کاربری تان را کامل کنید",
     "string.min": "نام حساب کاربری باید بیشتر از 2 کارکتر باشد",
@@ -27,11 +27,11 @@ const userSchema = Joi.object({
     .regex(
       /(((^(\+|00)(98)([- ]?))|^(0))(9\d{2})([- ]?)(\d{3})([- ]?)(\d{4})$)|((^(\+|00)(98)([- ]?))|^(0))([1-9]{2}[0-9]{8})$/
     ) // iran num
-    .optional()
+    .allow("").optional()
     .messages({
       "string.pattern.base": `شماره تلفن وارد شده صحیح نمی‌باشد`,
     }),
-  bio: Joi.string().optional(),
+  bio: Joi.string().allow("").optional(),
   showSocials: Joi.object({
     email: Joi.boolean().optional(),
     phone: Joi.boolean().optional(),

@@ -14,7 +14,7 @@ const BGMode = () => {
   const [muted, setMuted] = useState(false);
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
-  const { setTheme, resolvedTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
 
   useEffect(() => {
     setMuted(true);
@@ -33,7 +33,7 @@ const BGMode = () => {
     setShow(false);
   };
 
-  if (!muted) return <MdComputer className="text-2xl" />;
+  if (!muted) return <MdComputer className="text-2xl p-1" />;
 
   return (
     <div className=" relative flex p-1">
@@ -41,9 +41,9 @@ const BGMode = () => {
         onClick={showHandler}
         className="text-2xl hover:bg-sky-200 dark:hover:bg-sky-900 p-1 rounded-md"
       >
-        {resolvedTheme === "light" && <MdLightMode />}
-        {resolvedTheme === "dark" && <MdDarkMode />}
-        {resolvedTheme === "system" && <MdComputer />}
+        {theme === "light" && <MdLightMode />}
+        {theme === "dark" && <MdDarkMode />}
+        {theme === "system" && <MdComputer />}
       </button>
       <div
         ref={ref}

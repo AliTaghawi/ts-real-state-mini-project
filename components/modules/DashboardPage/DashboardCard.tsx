@@ -32,6 +32,8 @@ const DashboardCard = ({
     }
   };
 
+  // console.log(location, ":", published)
+
   return (
     <div className="flex flex-col gap-2 items-start p-4 border border-sky-400 dark:border-sky-800 rounded-xl shadow-md dark:shadow-sky-950 max-w-[450px] w-full mx-auto sm:mx-0">
       <h4 className="text-sm font-bold ms-1">{e2p(title)}</h4>
@@ -74,13 +76,13 @@ const DashboardCard = ({
         <GrStatusUnknown className="text-lg text-sky-400 dark:text-sky-500" />
         <div>
           <span className="me-1.5">وضعیت آگهی:</span>
-          {published ? (
-            <span className="text-emerald-500">تایید شده</span>
-          ) : (
+          {published ?? (
             <span className="text-neutral-500 dark:text-neutral-400">
               در انتظار تایید
             </span>
           )}
+          {published && <span className="text-emerald-500">تایید شده</span>}
+          {published === false && <span className="text-red-400">تایید نشد</span>}
         </div>
       </div>
       <Link

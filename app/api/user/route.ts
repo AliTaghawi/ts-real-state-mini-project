@@ -65,9 +65,7 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const user = await RSUser.findOne({ email: session?.user?.email }).select(
-      "+password"
-    );
+    const user = await RSUser.findOne({ email: session?.user?.email });
     if (!user) {
       return NextResponse.json(
         { error: StatusMessages.NOTFOUND_USER },
@@ -105,10 +103,10 @@ export async function PATCH(req: NextRequest) {
     // showName ? (user.showName = showName) : null;
     // phone ? (user.phone = phone) : null;
     // bio ? (user.bio = bio) : null;
-    user.fullName = fullName
-    user.showName = showName
-    user.phone = phone
-    user.bio = bio
+    user.fullName = fullName;
+    user.showName = showName;
+    user.phone = phone;
+    user.bio = bio;
     user.showSocials.email = showSocials.email;
     user.showSocials.phone = showSocials.phone;
     await user.save();

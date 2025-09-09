@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -61,40 +61,45 @@ const validationSchema = Yup.object({
 });
 
 const EditFilePage = ({ id }: { id: string }) => {
-  const [file, setFile] = useState<FrontFileType>();
+  const [file, setFile] = useState<FrontFileType | null>(null);
   const router = useRouter();
   useEffect(() => {
+    let active = true;
+    async function getFile() {
+      const res = await fetch(`/api/files/${id}`);
+      const { file } = await res.json();
+      if (active && file) {
+        console.log(file);
+        setFile(file);
+      }
+    }
     getFile();
+    return () => {
+      active = false;
+    };
   }, [id]);
 
-  async function getFile() {
-    const result = await fetch(`/api/files/${id}`);
-    const res = await result.json();
-    if (res.file) {
-      setFile({ ...res.file });
-    }
-  }
-
-  console.log;
-
-  const initialValues = {
-    title: "",
-    description: "",
-    location: "",
-    address: "",
-    realState: "",
-    phone: "",
-    fileType: "rent",
-    areaMeter: 10,
-    category: "apartment",
-    constructionDate: new Date(),
-    amenities: [],
-    rules: [],
-    ...file,
-    price: typeof file?.price === "number" ? file?.price : 1000,
-    rent: typeof file?.price === "object" ? file?.price.rent : 1000,
-    mortgage: typeof file?.price === "object" ? file?.price.mortgage : 1000,
-  };
+  const initialValues = useMemo(
+    () => ({
+      title: "",
+      description: "",
+      location: "",
+      address: "",
+      realState: "",
+      phone: "",
+      fileType: "rent",
+      areaMeter: 10,
+      category: "apartment",
+      constructionDate: new Date(),
+      amenities: [],
+      rules: [],
+      ...file,
+      price: typeof file?.price === "number" ? file?.price : 1000,
+      rent: typeof file?.price === "object" ? file?.price.rent : 1000,
+      mortgage: typeof file?.price === "object" ? file?.price.mortgage : 1000,
+    }),
+    [file]
+  );
 
   const formik = useFormik({
     initialValues,
@@ -136,9 +141,9 @@ const EditFilePage = ({ id }: { id: string }) => {
   }
 
   const cancelHandler = () => {
-    formik.resetForm()
-    router.back()
-  }
+    formik.resetForm();
+    router.back();
+  };
 
   return (
     <div>

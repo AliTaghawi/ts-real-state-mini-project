@@ -6,6 +6,7 @@ import { LuClipboardType } from "react-icons/lu";
 import { IoMdPricetag } from "react-icons/io";
 import { GrStatusUnknown } from "react-icons/gr";
 import { CiEdit } from "react-icons/ci";
+import { BiLeftArrowAlt } from "react-icons/bi";
 import { FrontFileType } from "@/models/RSFile";
 import { categoryIcons, categoryText, fileTypesText } from "@/utils/constants";
 import { AppDispatch } from "@/redux/stor";
@@ -32,7 +33,7 @@ const DashboardCard = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 items-start p-4 border border-sky-400 dark:border-sky-800 rounded-xl shadow-md max-w-[450px] w-full mx-auto sm:mx-0">
+    <div className="flex flex-col gap-2 items-start p-4 border border-sky-400 dark:border-sky-800 rounded-xl shadow-md dark:shadow-sky-950 max-w-[450px] w-full mx-auto sm:mx-0">
       <h4 className="text-sm font-bold ms-1">{e2p(title)}</h4>
       <div className={itemsStyle}>
         <MdLocationPin className="text-xl text-sky-400 dark:text-sky-500" />
@@ -82,6 +83,12 @@ const DashboardCard = ({
           )}
         </div>
       </div>
+      <Link
+        href={`/property-files/${_id}`}
+        className={`${itemsStyle} text-sm font-semibold text-emerald-600 dark:text-emerald-400 py-1 px-1.5 hover:bg-sky-100 dark:hover:bg-sky-950 rounded-md transition ease-linear`}
+      >
+        مشاهده آگهی <BiLeftArrowAlt className="text-xl" />
+      </Link>
       <div className="flex justify-between items-center w-full mt-auto">
         <Link
           href={`/dashboard/add-file/${_id}`}

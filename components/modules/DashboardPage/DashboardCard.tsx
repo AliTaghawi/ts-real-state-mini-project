@@ -74,13 +74,13 @@ const DashboardCard = ({
         <GrStatusUnknown className="text-lg text-sky-400 dark:text-sky-500" />
         <div>
           <span className="me-1.5">وضعیت آگهی:</span>
-          {published ? (
-            <span className="text-emerald-500">تایید شده</span>
-          ) : (
+          {published ?? (
             <span className="text-neutral-500 dark:text-neutral-400">
               در انتظار تایید
             </span>
           )}
+          {published && <span className="text-emerald-500">تایید شده</span>}
+          {published === false && <span className="text-red-400">تایید نشد</span>}
         </div>
       </div>
       <Link

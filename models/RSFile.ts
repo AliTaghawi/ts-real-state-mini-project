@@ -16,7 +16,7 @@ interface RSFileTypes {
   amenities: string[];
   rules: string[];
   userId: Schema.Types.ObjectId;
-  published: boolean;
+  published?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -82,10 +82,7 @@ const fileSchema = new Schema<RSFileTypes>(
       ref: "RSUser",
       required: true,
     },
-    published: {
-      type: Boolean,
-      default: false,
-    },
+    published: Boolean,
   },
   { timestamps: true }
 );

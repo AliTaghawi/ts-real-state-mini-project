@@ -17,8 +17,10 @@ const itemsStyle = "flex gap-1 items-center";
 
 const DashboardCard = ({
   file: { title, location, price, category, fileType, published, _id },
+  dashPage,
 }: {
   file: FrontFileType;
+  dashPage?: boolean
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -72,7 +74,7 @@ const DashboardCard = ({
           </div>
         )}
       </div>
-      <div className={`${itemsStyle} text-sm font-semibold`}>
+      {dashPage && (<div className={`${itemsStyle} text-sm font-semibold`}>
         <GrStatusUnknown className="text-lg text-sky-400 dark:text-sky-500" />
         <div>
           <span className="me-1.5">وضعیت آگهی:</span>
@@ -84,14 +86,14 @@ const DashboardCard = ({
           {published && <span className="text-emerald-500">تایید شده</span>}
           {published === false && <span className="text-red-400">تایید نشد</span>}
         </div>
-      </div>
+      </div>)}
       <Link
         href={`/property-files/${_id}`}
         className={`${itemsStyle} text-sm font-semibold text-emerald-600 dark:text-emerald-400 py-1 px-1.5 hover:bg-sky-100 dark:hover:bg-sky-950 rounded-md transition ease-linear`}
       >
         مشاهده آگهی <BiLeftArrowAlt className="text-xl" />
       </Link>
-      <div className="flex justify-between items-center w-full mt-auto">
+      {dashPage && (<div className="flex justify-between items-center w-full mt-auto">
         <Link
           href={`/dashboard/add-file/${_id}`}
           className="flex items-center text-emerald-700 dark:text-emerald-500 gap-0.5 py-0.5 px-1.5 hover:bg-sky-100 dark:hover:bg-sky-950 rounded-md transition ease-linear font-medium mt-2"
@@ -104,7 +106,7 @@ const DashboardCard = ({
         >
           حذف <MdDeleteForever />
         </button>
-      </div>
+      </div>)}
       <Toaster />
     </div>
   );

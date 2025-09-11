@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -15,7 +17,7 @@ import { e2p, sp } from "@/utils/replaceNumber";
 
 const itemsStyle = "flex gap-1 items-center";
 
-const DashboardCard = ({
+const FileCard = ({
   file: { title, location, price, category, fileType, published, _id },
   dashPage,
 }: {
@@ -112,4 +114,4 @@ const DashboardCard = ({
   );
 };
 
-export default DashboardCard;
+export default FileCard;

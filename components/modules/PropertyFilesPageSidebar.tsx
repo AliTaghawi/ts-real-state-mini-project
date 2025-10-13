@@ -1,10 +1,13 @@
 "use client";
 
+import { ChangeEvent, useEffect, useState } from "react";
+import FilterInput from "@/elements/propertyFilesPageSidebar/FilterInput";
 import FilterItems from "@/elements/propertyFilesPageSidebar/FilterItems";
-import { ChangeEvent, ReactEventHandler, useEffect, useState } from "react";
 
 const PropertyFilesPageSidebar = () => {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({
+    fileType: ""
+  });
   // useEffect(() => {
   //   console.log(filters)
   // }, [filters])
@@ -27,46 +30,14 @@ const PropertyFilesPageSidebar = () => {
       </div>
       <div className="bg-sky-100 rounded-md p-1.5">
         <FilterItems title="نوع آگهی">
-          <label className="flex gap-1 items-center text-sm font-semibold">
-            اجاره
-            <input
-              type="radio"
-              name="fileType"
-              value="rent"
-              onChange={changeHandler}
-            />
-          </label>
-          <label className="flex gap-1 items-center text-sm font-semibold">
-            رهن
-            <input
-              type="radio"
-              name="fileType"
-              value="mortgage"
-              onChange={changeHandler}
-            />
-          </label>
-          <label className="flex gap-1 items-center text-sm font-semibold">
-            فروش
-            <input
-              type="radio"
-              name="fileType"
-              value="buy"
-              onChange={changeHandler}
-            />
-          </label>
+          <FilterInput title="اجاره" type="radio" name="fileType" value="rent" data={filters} onChange={changeHandler} />
+          <FilterInput title="رهن" type="radio" name="fileType" value="mortgage" data={filters} onChange={changeHandler} />
+          <FilterInput title="فروش" type="radio" name="fileType" value="buy" data={filters} onChange={changeHandler} />
         </FilterItems>
-        <div>
-          <p>نوع ملک:</p>
-        </div>
-        <div>
-          <p>متراژ:</p>
-        </div>
-        <div>
-          <p>قیمت:</p>
-        </div>
-        <div>
-          <p>تاریخ ساخت:</p>
-        </div>
+        <FilterItems title="نوع ملک"></FilterItems>
+        <FilterItems title="متراژ"></FilterItems>
+        <FilterItems title="قیمت"></FilterItems>
+        <FilterItems title="تاریخ ساخت"></FilterItems>
       </div>
     </aside>
   );

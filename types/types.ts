@@ -52,8 +52,18 @@ type RadioInputProps = {
 
 type FilterItemsProps = {
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
+
+type FilterInputProps = {
+  title: string,
+  type: string,
+  name: string,
+  value: string,
+  data?: any,
+  checked?: boolean;
+  onChange: (e: ChangeEvent<any>) => void;
+}
 
 interface LoginType {
   email: string;
@@ -89,6 +99,7 @@ export type {
   RadioInputProps,
   TextListProps,
   FilterItemsProps,
+  FilterInputProps,
   LoginType,
   RegisterType,
   FetchUserType,

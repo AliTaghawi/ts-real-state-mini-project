@@ -50,6 +50,11 @@ type RadioInputProps = {
   onBlur: () => void;
 };
 
+type FilterItemsProps = {
+  title: string;
+  children: React.ReactNode;
+};
+
 interface LoginType {
   email: string;
   password: string;
@@ -83,6 +88,7 @@ export type {
   CheckBoxProps,
   RadioInputProps,
   TextListProps,
+  FilterItemsProps,
   LoginType,
   RegisterType,
   FetchUserType,

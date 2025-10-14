@@ -67,9 +67,9 @@ type FilterInputProps = {
 };
 
 type PriceRangeFilterProps = {
-  filters: FiltersType,
-  setFilters:  Dispatch<SetStateAction<FiltersType>>
-}
+  filters: FiltersType;
+  setFilters: Dispatch<SetStateAction<FiltersType>>;
+};
 
 interface LoginType {
   email: string;
@@ -101,11 +101,13 @@ interface ChangePasswordType {
 interface FiltersType {
   fileType?: string;
   category?: string;
-  areaMeter?: number;
+  areaMeterStart?: number;
+  areaMeterEnd?: number;
   minPrice?: number;
   maxPrice?: number;
   minRent?: number;
   maxRent?: number;
+  constructionDate?: Date;
 }
 
 export type {

@@ -11,32 +11,25 @@ const FilterInput = ({
   className,
   onChange,
 }: FilterInputProps) => {
-  if (title) {
-    return (
-      <label
-        className={className ?? "flex gap-1 items-center text-sm font-semibold"}
-      >
-        {title}
-        <input
-          type={type}
-          name={name}
-          value={value}
-          checked={checking ? data[name] == value : undefined}
-          onChange={onChange}
-        />
-      </label>
-    );
-  } else {
-    return (
+  return (
+    <label
+      className={`${
+        type == "radio" || type == "checkbox"
+          ? "flex gap-1 items-center"
+          : "flex flex-col gap-1 items-start"
+      } text-sm font-semibold`}
+    >
+      {title}
       <input
-        className={className}
+        className={`${className} text-base font-normal`}
         type={type}
         name={name}
         value={value}
+        checked={checking ? data[name] == value : undefined}
         onChange={onChange}
       />
-    );
-  }
+    </label>
+  );
 };
 
 export default FilterInput;

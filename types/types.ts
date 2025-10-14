@@ -56,12 +56,13 @@ type FilterItemsProps = {
 };
 
 type FilterInputProps = {
-  title: string,
   type: string,
   name: string,
-  value: string,
+  value: string | number,
+  className?: string,
+  title?: string,
   data?: any,
-  checked?: boolean;
+  checking?: boolean;
   onChange: (e: ChangeEvent<any>) => void;
 }
 

@@ -1,16 +1,33 @@
 "use client";
 
 import { ChangeEvent, useEffect, useState } from "react";
+import RangeSlider from "react-range-slider-input";
+import "react-range-slider-input/dist/style.css";
 import FilterInput from "@/elements/propertyFilesPageSidebar/FilterInput";
 import FilterItems from "@/elements/propertyFilesPageSidebar/FilterItems";
+import { categoryText, fileTypesText } from "@/utils/constants";
+import { sp } from "@/utils/replaceNumber";
+
+type FiltersType = {
+  fileType?: string;
+  category?: string;
+  areaMeter?: number | string;
+  minPrice?: number;
+  maxPrice?: number;
+  minRent?: number;
+  maxRent?: number;
+};
 
 const PropertyFilesPageSidebar = () => {
-  const [filters, setFilters] = useState({
-    fileType: ""
-  });
-  // useEffect(() => {
-  //   console.log(filters)
-  // }, [filters])
+  const [filters, setFilters] = useState<FiltersType>({});
+
+  const categoryKeys = Object.keys(categoryText) as Array<
+    keyof typeof categoryText
+  >;
+  const fileTypesKeys = Object.keys(fileTypesText) as Array<
+    keyof typeof fileTypesText
+  >;
+
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -30,12 +47,42 @@ const PropertyFilesPageSidebar = () => {
       </div>
       <div className="bg-sky-100 rounded-md p-1.5">
         <FilterItems title="نوع آگهی">
-          <FilterInput title="اجاره" type="radio" name="fileType" value="rent" data={filters} onChange={changeHandler} />
-          <FilterInput title="رهن" type="radio" name="fileType" value="mortgage" data={filters} onChange={changeHandler} />
-          <FilterInput title="فروش" type="radio" name="fileType" value="buy" data={filters} onChange={changeHandler} />
+          {fileTypesKeys.map((item) => (
+            <FilterInput
+              key={item}
+              title={fileTypesText[item]}
+              type="radio"
+              name="fileType"
+              value={item}
+              data={filters}
+              checking={true}
+              onChange={changeHandler}
+            />
+          ))}
         </FilterItems>
-        <FilterItems title="نوع ملک"></FilterItems>
-        <FilterItems title="متراژ"></FilterItems>
+        <FilterItems title="نوع ملک">
+          {categoryKeys.map((item) => (
+            <FilterInput
+              key={item}
+              title={categoryText[item]}
+              type="radio"
+              name="category"
+              value={item}
+              data={filters}
+              checking={true}
+              onChange={changeHandler}
+            />
+          ))}
+        </FilterItems>
+        <FilterItems title="متراژ">
+          <FilterInput
+            className="bg-white py-0.5 px-1.5 rounded-md border border-sky-400"
+            type="number"
+            name="areaMeter"
+            value={filters.areaMeter ?? ""}
+            onChange={changeHandler}
+          />
+        </FilterItems>
         <FilterItems title="قیمت"></FilterItems>
         <FilterItems title="تاریخ ساخت"></FilterItems>
       </div>

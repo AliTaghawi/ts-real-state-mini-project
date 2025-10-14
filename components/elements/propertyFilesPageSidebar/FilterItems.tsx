@@ -25,7 +25,7 @@ const FilterItems = ({ title, children }: FilterItemsProps) => {
           isOpen ? `grid-rows-[1fr]` : "grid-rows-[0fr]"
         }`}
       >
-        <div className="flex flex-col gap-1 overflow-hidden ms-1">
+        <div className="flex flex-col gap-1 overflow-hidden ms-1 mb-1.5">
           {children}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { SafeUser } from "@/models/RSUser";
-import { ChangeEvent, FocusEvent } from "react";
+import { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from "react";
 
 type ChildrenType = Readonly<{
   children: React.ReactNode;
@@ -56,14 +56,19 @@ type FilterItemsProps = {
 };
 
 type FilterInputProps = {
-  type: string,
-  name: string,
-  value: string | number,
-  className?: string,
-  title?: string,
-  data?: any,
+  type: string;
+  name: string;
+  value: string | number;
+  className?: string;
+  title?: string;
+  data?: any;
   checking?: boolean;
   onChange: (e: ChangeEvent<any>) => void;
+};
+
+type PriceRangeFilterProps = {
+  filters: FiltersType,
+  setFilters:  Dispatch<SetStateAction<FiltersType>>
 }
 
 interface LoginType {
@@ -93,6 +98,16 @@ interface ChangePasswordType {
   confirmPassword: string;
 }
 
+interface FiltersType {
+  fileType?: string;
+  category?: string;
+  areaMeter?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  minRent?: number;
+  maxRent?: number;
+}
+
 export type {
   ChildrenType,
   TextInputProps,
@@ -101,9 +116,11 @@ export type {
   TextListProps,
   FilterItemsProps,
   FilterInputProps,
+  PriceRangeFilterProps,
   LoginType,
   RegisterType,
   FetchUserType,
   DetailsItemType,
   ChangePasswordType,
+  FiltersType,
 };

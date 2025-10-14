@@ -1,22 +1,11 @@
 "use client";
 
-import { ChangeEvent, useEffect, useState } from "react";
-import RangeSlider from "react-range-slider-input";
-import "react-range-slider-input/dist/style.css";
+import { ChangeEvent, useState } from "react";
 import FilterInput from "@/elements/propertyFilesPageSidebar/FilterInput";
 import FilterItems from "@/elements/propertyFilesPageSidebar/FilterItems";
 import { categoryText, fileTypesText } from "@/utils/constants";
-import { sp } from "@/utils/replaceNumber";
-
-type FiltersType = {
-  fileType?: string;
-  category?: string;
-  areaMeter?: number | string;
-  minPrice?: number;
-  maxPrice?: number;
-  minRent?: number;
-  maxRent?: number;
-};
+import { FiltersType } from "@/types/types";
+import PriceRangeFilter from "@/elements/propertyFilesPageSidebar/PriceRangeFilter";
 
 const PropertyFilesPageSidebar = () => {
   const [filters, setFilters] = useState<FiltersType>({});
@@ -83,7 +72,9 @@ const PropertyFilesPageSidebar = () => {
             onChange={changeHandler}
           />
         </FilterItems>
-        <FilterItems title="قیمت"></FilterItems>
+        <FilterItems title="قیمت">
+          <PriceRangeFilter filters={filters} setFilters={setFilters} />
+        </FilterItems>
         <FilterItems title="تاریخ ساخت"></FilterItems>
       </div>
     </aside>

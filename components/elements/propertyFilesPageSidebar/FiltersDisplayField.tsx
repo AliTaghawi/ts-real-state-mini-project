@@ -14,10 +14,13 @@ const FiltersDisplayField = ({
 }: PriceRangeFilterProps) => {
   return (
     <div className="bg-sky-100 dark:bg-sky-950 px-2 py-1.5 rounded-md mb-3">
-      <button className="w-full text-xs font-semibold p-1 bg-white border dark:bg-gray-900 border-sky-300 dark:border-sky-700 hover:bg-white/70 dark:hover:bg-gray-800 rounded-sm transition-all ease-in">
+      <button
+        className="w-full text-xs font-semibold p-1 bg-white border dark:bg-gray-900 border-sky-300 dark:border-sky-700 hover:bg-white/70 dark:hover:bg-gray-800 rounded-sm transition-all ease-in"
+        onClick={() => setFilters({})}
+      >
         حذف تمامی فیلترها
       </button>
-      <div className="mt-1.5 flex items-center gap-1.5 flex-wrap">
+      <div className="mt-1.5 flex items-center gap-1.5 flex-wrap transition-all ease-in">
         {filters.fileType ? (
           <FilterTag
             filterOf="fileType"
@@ -54,7 +57,7 @@ const FiltersDisplayField = ({
         ) : null}
         {filters.minPrice || filters.maxPrice ? (
           <FilterTag
-            filterOf="rent"
+            filterOf="price"
             setFilters={setFilters}
             tag={`قیمت/رهن: از ${sp(filters.minPrice || "0")} تا ${
               filters.maxPrice && filters.maxPrice < maxPrice

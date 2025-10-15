@@ -71,6 +71,12 @@ type PriceRangeFilterProps = {
   setFilters: Dispatch<SetStateAction<FiltersType>>;
 };
 
+type FilterTagProps = {
+  tag: string;
+  filterOf: string;
+  setFilters: Dispatch<SetStateAction<FiltersType>>;
+};
+
 interface LoginType {
   email: string;
   password: string;
@@ -119,6 +125,7 @@ export type {
   FilterItemsProps,
   FilterInputProps,
   PriceRangeFilterProps,
+  FilterTagProps,
   LoginType,
   RegisterType,
   FetchUserType,

@@ -9,41 +9,45 @@ const PriceRangeFilter = ({ filters, setFilters }: PriceRangeFilterProps) => {
   const step = 500000;
   return (
     <>
-      <div className="mb-2">
-        <p className="text-sm font-semibold mb-1.5">اجاره:</p>
-        <div className="flex items-top justify-between gap-1.5 text-xs font-medium">
-          <div className="flex flex-col wrap-anywhere">
-            <span>
-              {!filters.maxRent || filters.maxRent > maxRent ? "+" : null}
-              {sp(
-                filters.maxRent
-                  ? filters.maxRent > maxRent
-                    ? maxRent
-                    : filters.maxRent
-                  : maxRent
-              )}
-            </span>{" "}
-            تومان
+      {!filters.fileType || filters.fileType === "rent" ? (
+        <div className="mb-2">
+          <p className="text-sm font-semibold mb-1.5">اجاره:</p>
+          <div className="flex items-top justify-between gap-1.5 text-xs font-medium">
+            <div className="flex flex-col wrap-anywhere">
+              <span>
+                {!filters.maxRent || filters.maxRent > maxRent ? "+" : null}
+                {sp(
+                  filters.maxRent
+                    ? filters.maxRent > maxRent
+                      ? maxRent
+                      : filters.maxRent
+                    : maxRent
+                )}
+              </span>{" "}
+              تومان
+            </div>
+            <div className="flex flex-col items-end">
+              <span>{sp(filters.minRent ?? "0")}</span> تومان
+            </div>
           </div>
-          <div className="flex flex-col items-end">
-            <span>{sp(filters.minRent ?? "0")}</span> تومان
-          </div>
+          <RangeSlider
+            className="my-2.5"
+            min={0}
+            max={maxRent + step}
+            step={step}
+            value={[filters.minRent ?? 0, filters.maxRent ?? maxRent + step]}
+            onInput={(e) => {
+              setFilters((prev) => ({
+                ...prev,
+                minRent: e[0],
+                maxRent: e[1],
+                fileType: e[0] > 0 || e[1] < maxRent ? "rent" : prev.fileType,
+              }));
+              console.log(filters);
+            }}
+          />
         </div>
-        <RangeSlider
-          className="my-2.5"
-          min={0}
-          max={maxRent + step}
-          step={step}
-          value={[filters.minRent ?? 0, filters.maxRent ?? maxRent + step]}
-          onInput={(e) => {
-            setFilters((prev) => ({
-              ...prev,
-              minRent: e[0],
-              maxRent: e[1],
-            }));
-          }}
-        />
-      </div>
+      ) : null}
       <div>
         <p className="text-sm font-semibold mb-1.5">قیمت/رهن:</p>
         <div className="flex items-top justify-between gap-1.5 text-xs font-medium">

@@ -26,7 +26,7 @@ const PropertyFilesPageSidebar = () => {
     <aside className="border-2 border-sky-400 dark:border-sky-800 rounded-lg w-[200px] min-h-[400px] p-1.5">
       <h3 className="text-center my-2 text-lg font-semibold">فیلترها</h3>
       <FiltersDisplayField />
-      <div className="bg-sky-100 rounded-md p-1.5">
+      <div className="bg-sky-100 dark:bg-sky-950 rounded-md p-1.5">
         <FilterItems title="نوع آگهی">
           {fileTypesKeys.map((item) => (
             <FilterInput
@@ -58,7 +58,7 @@ const PropertyFilesPageSidebar = () => {
         <FilterItems title="متراژ">
           <FilterInput
             title="از (متر):"
-            className="bg-white py-0.5 px-1.5 rounded-md border border-sky-400 w-full"
+            className="bg-white dark:bg-gray-950 py-0.5 px-1.5 rounded-md border border-sky-400 dark:border-sky-700 w-full"
             type="number"
             name="areaMeterStart"
             value={filters.areaMeterStart ?? ""}
@@ -66,7 +66,7 @@ const PropertyFilesPageSidebar = () => {
           />
           <FilterInput
             title="تا (متر):"
-            className="bg-white py-0.5 px-1.5 rounded-md border border-sky-400 w-full"
+            className="bg-white dark:bg-gray-950 py-0.5 px-1.5 rounded-md border border-sky-400 dark:border-sky-700 w-full"
             type="number"
             name="areaMeterEnd"
             value={filters.areaMeterEnd ?? ""}

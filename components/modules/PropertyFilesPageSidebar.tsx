@@ -25,7 +25,7 @@ const PropertyFilesPageSidebar = () => {
   return (
     <aside className="border-2 border-sky-400 dark:border-sky-800 rounded-lg w-[200px] min-h-[400px] p-1.5">
       <h3 className="text-center my-2 text-lg font-semibold">فیلترها</h3>
-      <FiltersDisplayField />
+      <FiltersDisplayField filters={filters} setFilters={setFilters} />
       <div className="bg-sky-100 dark:bg-sky-950 rounded-md p-1.5">
         <FilterItems title="نوع آگهی">
           {fileTypesKeys.map((item) => (

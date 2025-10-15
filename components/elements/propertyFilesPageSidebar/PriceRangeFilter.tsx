@@ -3,9 +3,10 @@ import "react-range-slider-input/dist/style.css";
 import { sp } from "@/utils/replaceNumber";
 import { PriceRangeFilterProps } from "@/types/types";
 
+export const maxRent = 200000000;
+export const maxPrice = 5000000000;
+
 const PriceRangeFilter = ({ filters, setFilters }: PriceRangeFilterProps) => {
-  const maxRent = 200000000;
-  const maxPrice = 1000000000;
   const step = 500000;
   return (
     <>

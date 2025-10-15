@@ -99,8 +99,8 @@ interface ChangePasswordType {
 }
 
 interface FiltersType {
-  fileType?: string;
-  category?: string;
+  fileType?: "rent" | "mortgage" | "buy";
+  category?: "villa" | "apartment" | "store" | "office" | "land";
   areaMeterStart?: number;
   areaMeterEnd?: number;
   minPrice?: number;

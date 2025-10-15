@@ -1,15 +1,68 @@
+import { PriceRangeFilterProps } from "@/types/types";
 import React from "react";
+import FilterTag from "./FilterTag";
+import { categoryText, fileTypesText } from "@/utils/constants";
+import { sp } from "@/utils/replaceNumber";
+import {
+  maxRent,
+  maxPrice,
+} from "@/elements/propertyFilesPageSidebar/PriceRangeFilter";
 
-const FiltersDisplayField = () => {
+const FiltersDisplayField = ({
+  filters,
+  setFilters,
+}: PriceRangeFilterProps) => {
   return (
     <div className="bg-sky-100 dark:bg-sky-950 px-2 py-1.5 rounded-md mb-3">
       <button className="w-full text-xs font-semibold p-1 bg-white border dark:bg-gray-900 border-sky-300 dark:border-sky-700 hover:bg-white/70 dark:hover:bg-gray-800 rounded-sm transition-all ease-in">
         حذف تمامی فیلترها
       </button>
       <div className="mt-1.5 flex items-center gap-1.5 flex-wrap">
-        <div className="text-xs font-bold flex items-center py-0.5 px-1 bg-sky-200/80 dark:bg-sky-800/80 rounded-xs w-fit gap-1">
-          <span className="text-sky-500 dark:text-sky-400">✕</span>جدیدترین
-        </div>
+        {filters.fileType ? (
+          <FilterTag
+            filterOf="fileType"
+            tag={`${fileTypesText[filters.fileType]}`}
+            setFilters={setFilters}
+          />
+        ) : null}
+        {filters.category ? (
+          <FilterTag
+            filterOf="category"
+            tag={`${categoryText[filters.category]}`}
+            setFilters={setFilters}
+          />
+        ) : null}
+        {filters.areaMeterStart || filters.areaMeterEnd ? (
+          <FilterTag
+            filterOf="areaMeter"
+            tag={`متراژ: ${filters.areaMeterStart || "0"} تا ${
+              filters.areaMeterEnd || "+~"
+            }`}
+            setFilters={setFilters}
+          />
+        ) : null}
+        {filters.minRent || filters.maxRent ? (
+          <FilterTag
+            filterOf="rent"
+            setFilters={setFilters}
+            tag={`اجاره: از ${sp(filters.minRent || "0")} تا ${
+              filters.maxRent && filters.maxRent < maxRent
+                ? sp(filters.maxRent)
+                : "+~"
+            }`}
+          />
+        ) : null}
+        {filters.minPrice || filters.maxPrice ? (
+          <FilterTag
+            filterOf="rent"
+            setFilters={setFilters}
+            tag={`قیمت/رهن: از ${sp(filters.minPrice || "0")} تا ${
+              filters.maxPrice && filters.maxPrice < maxPrice
+                ? sp(filters.maxPrice)
+                : "+~"
+            }`}
+          />
+        ) : null}
       </div>
     </div>
   );

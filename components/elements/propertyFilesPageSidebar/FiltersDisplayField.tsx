@@ -7,16 +7,24 @@ import {
   maxRent,
   maxPrice,
 } from "@/elements/propertyFilesPageSidebar/PriceRangeFilter";
+import { useRouter } from "next/navigation";
 
 const FiltersDisplayField = ({
   filters,
   setFilters,
 }: PriceRangeFilterProps) => {
+  const router = useRouter()
+
+  const deleteAllHandler = () => {
+    setFilters({})
+    router.replace("/property-files")
+  }
+  
   return (
     <div className="bg-sky-100 dark:bg-sky-950 px-2 py-1.5 rounded-md mb-3">
       <button
         className="w-full text-xs font-semibold p-1 bg-white border dark:bg-gray-900 border-sky-300 dark:border-sky-700 hover:bg-white/70 dark:hover:bg-gray-800 rounded-sm transition-all ease-in"
-        onClick={() => setFilters({})}
+        onClick={deleteAllHandler}
       >
         حذف تمامی فیلترها
       </button>

@@ -53,7 +53,7 @@ const PropertyFilesPageSidebar = () => {
       console.log("set filters");
       const query = buildQuery(filters);
       router.replace(`/property-files${query ? `?${query}` : ""}`);
-    }, 5000);
+    }, 4500);
 
     return () => clearTimeout(timeout);
   }, [filters]);

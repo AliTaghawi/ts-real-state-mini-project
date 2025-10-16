@@ -105,14 +105,14 @@ interface ChangePasswordType {
 }
 
 interface FiltersType {
-  fileType?: "rent" | "mortgage" | "buy";
-  category?: "villa" | "apartment" | "store" | "office" | "land";
+  fileType?: "rent" | "mortgage" | "buy" | null;
+  category?: "villa" | "apartment" | "store" | "office" | "land" | null;
   areaMeterStart?: number;
   areaMeterEnd?: number;
-  minPrice?: number;
-  maxPrice?: number;
-  minRent?: number;
-  maxRent?: number;
+  minPrice?: number | null;
+  maxPrice?: number | null;
+  minRent?: number | null;
+  maxRent?: number | null;
   constructionDate?: Date;
 }
 

@@ -9,16 +9,16 @@ const FilterTag = ({ tag, filterOf, setFilters }: FilterTagProps) => {
       case "rent":
         setFilters((prev) => ({
           ...prev,
-          minRent: undefined,
-          maxRent: undefined,
-          fileType: undefined,
+          minRent: null,
+          maxRent: null,
+          fileType: null,
         }));
         break;
       case "price":
         setFilters((prev) => ({
           ...prev,
-          minPrice: undefined,
-          maxPrice: undefined,
+          minPrice: null,
+          maxPrice: null,
         }));
         break;
       default:
@@ -28,7 +28,7 @@ const FilterTag = ({ tag, filterOf, setFilters }: FilterTagProps) => {
             delete filters.maxRent;
             delete filters.minRent;
           }
-          return { ...filters, [filterOf]: "" };
+          return { ...filters, [filterOf]: null };
         });
         break;
     }

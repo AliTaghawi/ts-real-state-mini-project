@@ -49,7 +49,7 @@ const FiltersDisplayField = ({
             filterOf="rent"
             setFilters={setFilters}
             tag={`اجاره: از ${sp(filters.minRent || "0")} تا ${
-              filters.maxRent && filters.maxRent < maxRent
+              filters.maxRent && +filters.maxRent < maxRent
                 ? sp(filters.maxRent)
                 : "+~"
             }`}
@@ -60,7 +60,7 @@ const FiltersDisplayField = ({
             filterOf="price"
             setFilters={setFilters}
             tag={`قیمت/رهن: از ${sp(filters.minPrice || "0")} تا ${
-              filters.maxPrice && filters.maxPrice < maxPrice
+              filters.maxPrice && +filters.maxPrice < maxPrice
                 ? sp(filters.maxPrice)
                 : "+~"
             }`}

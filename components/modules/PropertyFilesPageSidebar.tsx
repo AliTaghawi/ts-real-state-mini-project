@@ -1,6 +1,7 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import FilterInput from "@/elements/propertyFilesPageSidebar/FilterInput";
 import FilterItems from "@/elements/propertyFilesPageSidebar/FilterItems";
 import PriceRangeFilter from "@/elements/propertyFilesPageSidebar/PriceRangeFilter";
@@ -10,6 +11,52 @@ import { FiltersType } from "@/types/types";
 
 const PropertyFilesPageSidebar = () => {
   const [filters, setFilters] = useState<FiltersType>({});
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  useEffect(() => {
+    const init: any = {};
+    const keys = [
+      "fileType",
+      "category",
+      "areaMeterStart",
+      "areaMeterEnd",
+      "minPrice",
+      "maxPrice",
+      "minRent",
+      "maxRent",
+    ];
+    for (const [key, value] of searchParams.entries()) {
+      if (keys.includes(key)) {
+        init[key] = value;
+      }
+    }
+    setFilters(init);
+  }, [searchParams]);
+
+  const buildQuery = (filters: FiltersType) => {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (!!value) {
+        params.append(key, String(value));
+      }
+    });
+    return params.toString();
+  };
+
+  useEffect(() => {
+    const query = buildQuery(filters);
+    const urlQuery = searchParams.toString();
+    if (query === urlQuery) return;
+
+    const timeout = setTimeout(() => {
+      console.log("set filters");
+      const query = buildQuery(filters);
+      router.replace(`/property-files${query ? `?${query}` : ""}`);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [filters]);
 
   const categoryKeys = Object.keys(categoryText) as Array<
     keyof typeof categoryText

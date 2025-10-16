@@ -107,13 +107,12 @@ interface ChangePasswordType {
 interface FiltersType {
   fileType?: "rent" | "mortgage" | "buy" | null;
   category?: "villa" | "apartment" | "store" | "office" | "land" | null;
-  areaMeterStart?: number;
-  areaMeterEnd?: number;
-  minPrice?: number | null;
-  maxPrice?: number | null;
-  minRent?: number | null;
-  maxRent?: number | null;
-  constructionDate?: Date;
+  areaMeterStart?: number | string;
+  areaMeterEnd?: number | string;
+  minPrice?: number | string | null;
+  maxPrice?: number | string | null;
+  minRent?: number | string | null;
+  maxRent?: number | string | null;
 }
 
 export type {

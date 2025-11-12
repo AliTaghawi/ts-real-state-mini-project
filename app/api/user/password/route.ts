@@ -5,12 +5,13 @@ import connectDB from "@/utils/connectDB";
 import { hashPassword, verifyPassword } from "@/utils/auth";
 import { passwordUpdateSchema } from "@/utils/validation";
 import { StatusCodes, StatusMessages } from "@/types/enums";
+import { authOptions } from "@/api/auth/config";
 
 export async function PATCH(req: NextRequest) {
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },

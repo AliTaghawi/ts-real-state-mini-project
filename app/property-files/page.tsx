@@ -24,7 +24,16 @@ export default async function PropertyFiles({ searchParams }: Props) {
       search: titleSearch,
     } = await searchParams;
 
-    const filters: any = { published: true };
+    const filters: {
+      published: boolean,
+      fileType?: string,
+      category?: string,
+      areaMeter?: any,
+      price?: any
+      "price.rent"?: any,
+      "price.mortgage"?: any
+      title?: object
+    } = { published: true };
 
     if (fileType) filters.fileType = fileType;
     if (category) filters.category = category;
@@ -62,7 +71,7 @@ export default async function PropertyFiles({ searchParams }: Props) {
 
     const files = await RSFile.find(filters).sort({ createdAt: -1 }).lean();
 
-    console.log(files);
+    // console.log(files);
 
     return <PropertyFilesPage files={files} />;
   } catch (error) {

@@ -6,6 +6,7 @@ import { fileValidationSchema } from "@/utils/validation";
 import { isValidObjectId } from "mongoose";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { authOptions } from "@/api/auth/config";
 
 export async function GET(
   req: Request,
@@ -14,7 +15,7 @@ export async function GET(
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },
@@ -64,7 +65,7 @@ export async function PATCH(
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },
@@ -155,7 +156,7 @@ export async function PATCH(
     file.address = address;
     file.rules = rules;
     file.amenities = amenities;
-    file.save();
+    await file.save();
 
     console.log("Updated file: ", file);
 
@@ -179,7 +180,7 @@ export async function DELETE(
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },
@@ -203,6 +204,12 @@ export async function DELETE(
     }
 
     const file = await RSFile.findOne({ _id: fileId });
+    if (!file) {
+      return NextResponse.json(
+        { error: StatusMessages.NOTFOUND_FILE },
+        { status: StatusCodes.NOTFOUND }
+      );
+    }
     if (!user._id.equals(file.userId) || user.role !== "ADMIN") {
       return NextResponse.json(
         { message: StatusMessages.FORBIDDEN },

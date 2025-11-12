@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/api/auth/[...nextauth]/route";
+import { authOptions } from "@/api/auth/config";
 import LoginPage from "@/templates/LoginPage";
 
 async function Login() {

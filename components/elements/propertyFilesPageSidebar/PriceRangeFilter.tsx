@@ -16,10 +16,10 @@ const PriceRangeFilter = ({ filters, setFilters }: PriceRangeFilterProps) => {
           <div className="flex items-top justify-between gap-1.5 text-xs font-medium">
             <div className="flex flex-col wrap-anywhere">
               <span>
-                {!filters.maxRent || filters.maxRent > maxRent ? "+" : null}
+                {!filters.maxRent || +filters.maxRent > maxRent ? "+" : null}
                 {sp(
                   filters.maxRent
-                    ? filters.maxRent > maxRent
+                    ? +filters.maxRent > maxRent
                       ? maxRent
                       : filters.maxRent
                     : maxRent
@@ -36,7 +36,7 @@ const PriceRangeFilter = ({ filters, setFilters }: PriceRangeFilterProps) => {
             min={0}
             max={maxRent + step}
             step={step}
-            value={[filters.minRent ?? 0, filters.maxRent ?? maxRent + step]}
+            value={[Number(filters.minRent ?? 0), Number(filters.maxRent ?? maxRent + step)]}
             onInput={(e) => {
               setFilters((prev) => ({
                 ...prev,
@@ -54,10 +54,10 @@ const PriceRangeFilter = ({ filters, setFilters }: PriceRangeFilterProps) => {
         <div className="flex items-top justify-between gap-1.5 text-xs font-medium">
           <div className="flex flex-col wrap-anywhere">
             <span>
-              {!filters.maxPrice || filters.maxPrice > maxPrice ? "+" : null}
+              {!filters.maxPrice || +filters.maxPrice > maxPrice ? "+" : null}
               {sp(
                 filters.maxPrice
-                  ? filters.maxPrice > maxPrice
+                  ? +filters.maxPrice > maxPrice
                     ? maxPrice
                     : filters.maxPrice
                   : maxPrice
@@ -74,7 +74,7 @@ const PriceRangeFilter = ({ filters, setFilters }: PriceRangeFilterProps) => {
           min={0}
           max={maxPrice + step}
           step={step}
-          value={[filters.minPrice ?? 0, filters.maxPrice ?? maxPrice + step]}
+          value={[Number(filters.minPrice ?? 0), Number(filters.maxPrice ?? maxPrice + step)]}
           onInput={(e) => {
             setFilters((prev) => ({
               ...prev,

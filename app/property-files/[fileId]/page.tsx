@@ -15,6 +15,7 @@ export async function generateStaticParams() {
 }
 
 const FileDetails = async ({ params }: { params: Promise<{ fileId: string }> }) => {
+  await connectDB();
   const { fileId } = await params;
   const file = await RSFile.findOne({ _id: fileId }).lean();
   if (!file) notFound();

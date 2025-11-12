@@ -5,12 +5,13 @@ import { getServerSession } from "next-auth";
 import RSUser from "@/models/RSUser";
 import { verifyPassword } from "@/utils/auth";
 import { userSchema } from "@/utils/validation";
+import { authOptions } from "@/api/auth/config";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },
@@ -57,7 +58,7 @@ export async function PATCH(req: NextRequest) {
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },
@@ -128,7 +129,7 @@ export async function DELETE(req: NextRequest) {
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },

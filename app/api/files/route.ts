@@ -5,12 +5,13 @@ import RSUser from "@/models/RSUser";
 import { StatusCodes, StatusMessages } from "@/types/enums";
 import { fileValidationSchema } from "@/utils/validation";
 import RSFile from "@/models/RSFile";
+import { authOptions } from "@/api/auth/config";
 
 export async function POST(req: Request) {
   try {
     await connectDB();
 
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json(
         { error: StatusMessages.UNAUTHORIZED },

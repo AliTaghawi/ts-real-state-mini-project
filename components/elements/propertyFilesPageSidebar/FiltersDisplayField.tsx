@@ -36,6 +36,13 @@ const FiltersDisplayField = ({
             setFilters={setFilters}
           />
         ) : null}
+        {filters.search ? (
+          <FilterTag
+            filterOf="search"
+            tag={`${filters.search}`}
+            setFilters={setFilters}
+          />
+        ) : null}
         {filters.category ? (
           <FilterTag
             filterOf="category"

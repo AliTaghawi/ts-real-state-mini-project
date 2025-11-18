@@ -25,6 +25,7 @@ const PropertyFilesPageSidebar = () => {
       "maxPrice",
       "minRent",
       "maxRent",
+      "search"
     ];
     for (const [key, value] of searchParams.entries()) {
       if (keys.includes(key)) {
@@ -53,7 +54,7 @@ const PropertyFilesPageSidebar = () => {
       console.log("set filters");
       const query = buildQuery(filters);
       router.replace(`/property-files${query ? `?${query}` : ""}`);
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(timeout);
   }, [filters]);

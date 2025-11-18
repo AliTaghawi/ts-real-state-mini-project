@@ -11,7 +11,6 @@ const titleStyle = "font-bold border-b-2 border-gray-400 mb-3 pb-3";
 const boxStyle = "shadow-[0px_4px_10px] shadow-sky-950/40 rounded-lg p-2.5 flex flex-col items-center mb-4";
 
 const FileDetailsPage = ({ file }: { file: FrontFileType }) => {
-  console.log(file);
   return (
     <div className="sm:flex sm:gap-8 items-start">
       <div className="w-full sm:w-[calc(100%-250px-2rem)]">

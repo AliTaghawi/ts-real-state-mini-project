@@ -21,6 +21,12 @@ const FilterTag = ({ tag, filterOf, setFilters }: FilterTagProps) => {
           maxPrice: null,
         }));
         break;
+      case "search":
+        setFilters((prev) => ({
+          ...prev,
+          search: undefined
+        }))
+        break;
       default:
         setFilters((prev) => {
           const filters = { ...prev };
